@@ -4,463 +4,456 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VLR — VALOR | Alder Home Security</title>
+<title>VLR — VALOR | Alder D3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --red:#e01e2e;
-  --red-dark:#9a0f1c;
-  --red-glow:rgba(224,30,46,0.18);
-  --black:#080808;
-  --off-black:#111;
-  --card:#141414;
-  --border:rgba(255,255,255,0.07);
-  --border-red:rgba(224,30,46,0.3);
-  --white:#f2f2f2;
-  --muted:#666;
-  --mid:#999;
-}
 html{scroll-behavior:smooth}
-body{
-  background:var(--black);
-  color:var(--white);
-  font-family:'Barlow',sans-serif;
-  font-weight:300;
-  overflow-x:hidden;
-  cursor:default;
-}
-
-/* ── NOISE OVERLAY ── */
-body::before{
-content:’’;
-position:fixed;
-inset:0;
-background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘1’/%3E%3C/svg%3E”);
-opacity:0.025;
-pointer-events:none;
-z-index:999;
-}
+body{background:#080808;color:#f0f0f0;font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 
 /* ── NAV ── */
 nav{
 position:fixed;top:0;left:0;right:0;z-index:100;
 display:flex;align-items:center;justify-content:space-between;
 padding:1.2rem 2.5rem;
-border-bottom:1px solid var(–border);
-background:rgba(8,8,8,0.9);
+border-bottom:1px solid rgba(255,255,255,0.07);
+background:rgba(8,8,8,0.94);
 backdrop-filter:blur(12px);
 }
 .nav-logo{
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:900;font-size:1.8rem;letter-spacing:0.08em;
-color:var(–white);text-decoration:none;
+font-weight:900;font-size:1.8rem;letter-spacing:0.08em;color:#f0f0f0;
 }
-.nav-logo span{color:var(–red)}
+.nav-logo span{color:#d42b2b}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{
-font-family:‘DM Mono’,monospace;font-size:0.65rem;
-letter-spacing:0.2em;text-transform:uppercase;
-color:var(–muted);text-decoration:none;transition:color 0.2s;
+font-family:‘DM Mono’,monospace;font-size:0.63rem;
+letter-spacing:0.2em;text-transform:uppercase;color:#444;transition:color 0.2s;
 }
-.nav-links a:hover{color:var(–red)}
-.nav-badge{
-font-family:‘DM Mono’,monospace;font-size:0.6rem;
+.nav-links a:hover{color:#f0f0f0}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-region{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
 letter-spacing:0.12em;text-transform:uppercase;
-color:var(–red);border:1px solid var(–border-red);
+color:#d42b2b;border:1px solid rgba(212,43,43,0.3);
 padding:0.35rem 0.8rem;
 }
+.nav-alder{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.12em;text-transform:uppercase;color:#333;
+}
+
+/* ── TICKER ── */
+.ticker-wrap{background:#d42b2b;overflow:hidden;padding:0.55rem 0;border-bottom:1px solid rgba(0,0,0,0.2)}
+.ticker-inner{display:flex;animation:tick 26s linear infinite;white-space:nowrap}
+.ticker-set{display:flex;gap:0;flex-shrink:0}
+.titem{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:700;font-size:0.88rem;letter-spacing:0.18em;text-transform:uppercase;
+color:#f0f0f0;padding:0 2.5rem;display:flex;align-items:center;gap:2.5rem;flex-shrink:0;
+}
+.tdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.35);flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── HERO ── */
 .hero{
 min-height:100vh;
-display:flex;flex-direction:column;
-justify-content:center;
-padding:8rem 2.5rem 5rem;
+display:flex;flex-direction:column;justify-content:flex-end;
+padding:0 2.5rem 5rem;
 position:relative;overflow:hidden;
-border-bottom:1px solid var(–border);
+border-bottom:1px solid rgba(255,255,255,0.07);
 }
-.hero-scanlines{
+.hero-redbar{position:absolute;left:0;top:0;bottom:0;width:4px;background:#d42b2b}
+.hero-grid{
 position:absolute;inset:0;
-background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px);
+background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+background-size:72px 72px;
+mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);
 pointer-events:none;
-}
-.hero-red-bar{
-position:absolute;left:0;top:0;bottom:0;width:4px;
-background:var(–red);
 }
 .hero-glow{
-position:absolute;right:-10%;top:20%;
-width:600px;height:600px;
-background:radial-gradient(circle,var(–red-glow) 0%,transparent 65%);
+position:absolute;right:-5%;top:15%;
+width:700px;height:700px;
+background:radial-gradient(circle,rgba(212,43,43,0.09) 0%,transparent 65%);
 pointer-events:none;
 }
-.hero-eyebrow{
-font-family:‘DM Mono’,monospace;font-size:0.65rem;
-letter-spacing:0.25em;text-transform:uppercase;
-color:var(–red);margin-bottom:1.5rem;
-opacity:0;animation:fadeUp 0.7s 0.1s forwards;
-}
-.hero-vlr{
+.hero-d3-stamp{
+position:absolute;right:2.5rem;top:50%;transform:translateY(-50%);
 font-family:‘Barlow Condensed’,sans-serif;
 font-weight:900;font-style:italic;
-font-size:clamp(7rem,22vw,18rem);
-line-height:0.85;letter-spacing:-0.01em;
-color:var(–white);
-opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+font-size:clamp(12rem,28vw,22rem);
+color:rgba(255,255,255,0.018);
+line-height:1;user-select:none;pointer-events:none;letter-spacing:-0.03em;
 }
-.hero-vlr span{
-color:transparent;
--webkit-text-stroke:2px var(–red);
+.hero-eyebrow{
+font-family:‘DM Mono’,monospace;font-size:0.63rem;
+letter-spacing:0.24em;text-transform:uppercase;
+color:#d42b2b;margin-bottom:1.5rem;
+opacity:0;animation:up 0.7s 0.1s forwards;
 }
-.hero-full{
+.hero-title{
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:300;font-size:clamp(1.2rem,3vw,2rem);
-letter-spacing:0.5em;text-transform:uppercase;
-color:var(–muted);margin-top:0.5rem;
-opacity:0;animation:fadeUp 0.8s 0.35s forwards;
+font-weight:900;font-style:italic;
+font-size:clamp(5.5rem,16vw,14rem);
+line-height:0.87;letter-spacing:0.01em;
+opacity:0;animation:up 0.9s 0.2s forwards;
 }
-.hero-divider{
-width:60px;height:3px;background:var(–red);
-margin:2rem 0;
-opacity:0;animation:fadeUp 0.7s 0.45s forwards;
+.hero-title .outline{
+color:transparent;
+-webkit-text-stroke:2px #f0f0f0;
 }
+.hero-title .red{color:#d42b2b}
+.hero-wordmark{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:300;font-size:clamp(1.1rem,2.5vw,1.8rem);
+letter-spacing:0.55em;text-transform:uppercase;color:#333;
+margin-top:0.5rem;
+opacity:0;animation:up 0.7s 0.35s forwards;
+}
+.hero-divider{width:50px;height:3px;background:#d42b2b;margin:2.2rem 0;opacity:0;animation:up 0.6s 0.45s forwards}
 .hero-sub{
-max-width:520px;font-size:1.1rem;line-height:1.7;
-color:var(–mid);
-opacity:0;animation:fadeUp 0.8s 0.55s forwards;
+max-width:500px;font-size:1.05rem;line-height:1.75;color:#666;
+opacity:0;animation:up 0.8s 0.55s forwards;
 }
-.hero-sub strong{color:var(–white);font-weight:500}
+.hero-sub strong{color:#f0f0f0;font-weight:500}
 .hero-ctas{
 margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;
-opacity:0;animation:fadeUp 0.8s 0.65s forwards;
+opacity:0;animation:up 0.8s 0.65s forwards;
 }
-.btn-red{
-background:var(–red);color:var(–white);
-font-family:‘DM Mono’,monospace;font-size:0.7rem;
-letter-spacing:0.15em;text-transform:uppercase;
-padding:0.9rem 2.2rem;text-decoration:none;
-font-weight:500;transition:background 0.2s,transform 0.15s;
-border:none;cursor:pointer;
+.btn-white{
+background:#f0f0f0;color:#080808;
+font-family:‘DM Mono’,monospace;font-size:0.68rem;
+letter-spacing:0.16em;text-transform:uppercase;
+padding:0.95rem 2.2rem;display:inline-block;transition:background 0.2s;
 }
-.btn-red:hover{background:#c01020;transform:translateY(-1px)}
+.btn-white:hover{background:#d8d8d8}
 .btn-ghost{
-border:1px solid var(–border);color:var(–mid);
-font-family:‘DM Mono’,monospace;font-size:0.7rem;
-letter-spacing:0.15em;text-transform:uppercase;
-padding:0.9rem 2.2rem;text-decoration:none;
+border:1px solid rgba(255,255,255,0.15);color:#555;
+font-family:‘DM Mono’,monospace;font-size:0.68rem;
+letter-spacing:0.16em;text-transform:uppercase;
+padding:0.95rem 2.2rem;display:inline-block;
 transition:border-color 0.2s,color 0.2s;
 }
-.btn-ghost:hover{border-color:var(–red);color:var(–white)}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.35);color:#f0f0f0}
 .hero-stats{
-position:absolute;right:2.5rem;bottom:4rem;
-display:flex;flex-direction:column;gap:2rem;text-align:right;
-opacity:0;animation:fadeLeft 1s 0.9s forwards;
+position:absolute;right:2.5rem;bottom:5rem;
+text-align:right;display:flex;flex-direction:column;gap:2.2rem;
+opacity:0;animation:fromright 1s 0.9s forwards;
 }
-.stat-num{
+.snum{
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:800;font-size:2.8rem;color:var(–red);line-height:1;
+font-weight:900;font-size:2.8rem;color:#f0f0f0;line-height:1;
 }
-.stat-label{
-font-family:‘DM Mono’,monospace;font-size:0.58rem;
-letter-spacing:0.18em;text-transform:uppercase;color:var(–muted);margin-top:0.2rem;
+.snum em{font-style:normal;color:#d42b2b}
+.slabel{
+font-family:‘DM Mono’,monospace;font-size:0.55rem;
+letter-spacing:0.18em;text-transform:uppercase;color:#333;margin-top:0.2rem;
 }
 
-/* ── SECTION BASE ── */
-section{padding:6rem 2.5rem;border-bottom:1px solid var(–border)}
-.s-tag{
+/* ── D3 REGION BAR ── */
+.region-bar{
+background:#0f0f0f;border-bottom:1px solid rgba(255,255,255,0.07);
+padding:2rem 2.5rem;
+display:flex;align-items:center;gap:0;
+overflow-x:auto;
+}
+.rbar-label{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.2em;text-transform:uppercase;color:#d42b2b;
+margin-right:3rem;flex-shrink:0;
+}
+.rbar-stats{display:flex;gap:0;flex:1}
+.rbar-item{
+flex:1;padding:0 2rem;border-left:1px solid rgba(255,255,255,0.07);
+min-width:120px;
+}
+.rbar-num{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:800;font-size:1.8rem;color:#f0f0f0;line-height:1;
+}
+.rbar-num span{color:#d42b2b}
+.rbar-desc{
+font-family:‘DM Mono’,monospace;font-size:0.52rem;
+letter-spacing:0.14em;text-transform:uppercase;color:#333;margin-top:0.25rem;
+}
+
+/* ── SECTIONS ── */
+section{padding:6rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+.stag{
 font-family:‘DM Mono’,monospace;font-size:0.62rem;
 letter-spacing:0.22em;text-transform:uppercase;
-color:var(–red);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;
+color:#d42b2b;margin-bottom:1rem;
+display:flex;align-items:center;gap:0.8rem;
 }
-.s-tag::before{content:’’;display:block;width:24px;height:2px;background:var(–red)}
-.s-head{
+.stag::before{content:’’;display:block;width:22px;height:2px;background:#d42b2b}
+.shead{
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:800;font-size:clamp(2.5rem,6vw,4.5rem);
-line-height:0.95;letter-spacing:0.02em;margin-bottom:1rem;
+font-weight:800;font-size:clamp(2.8rem,6vw,5rem);
+line-height:0.92;letter-spacing:0.02em;margin-bottom:1.2rem;color:#f0f0f0;
 }
-.s-head em{font-style:italic;color:var(–red)}
+.shead em{font-style:italic;color:#d42b2b}
 
 /* ── VIDEO ── */
-#video{background:var(–off-black)}
+#video{background:#0c0c0c}
 .video-wrap{
-margin-top:3rem;position:relative;
-aspect-ratio:16/9;max-width:900px;margin-inline:auto;
-background:#0d0d0d;border:1px solid var(–border);
-display:flex;align-items:center;justify-content:center;
-overflow:hidden;cursor:pointer;
+margin-top:3rem;max-width:880px;margin-inline:auto;
+border:1px solid rgba(255,255,255,0.07);
+position:relative;aspect-ratio:16/9;background:#060606;overflow:hidden;cursor:pointer;
 }
-.video-wrap:hover .play-ring{transform:scale(1.08)}
-.video-bg-text{
-position:absolute;
+.video-wrap:hover .play-ring{transform:scale(1.07)}
+.vbg{
+position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:900;font-size:18rem;
-color:rgba(255,255,255,0.02);
-letter-spacing:-0.05em;
-user-select:none;
+font-weight:900;font-style:italic;
+font-size:min(28vw,20rem);color:rgba(255,255,255,0.018);
+letter-spacing:-0.02em;user-select:none;pointer-events:none;
 }
 .play-ring{
-width:90px;height:90px;border-radius:50%;
-border:2px solid var(–red);
+width:88px;height:88px;border-radius:50%;
+border:2px solid #d42b2b;
 display:flex;align-items:center;justify-content:center;
-position:relative;z-index:2;transition:transform 0.25s;
+transition:transform 0.25s;position:relative;z-index:2;
 }
 .play-tri{
 width:0;height:0;
-border-top:14px solid transparent;
-border-bottom:14px solid transparent;
-border-left:24px solid var(–red);
-margin-left:4px;
+border-top:13px solid transparent;border-bottom:13px solid transparent;
+border-left:22px solid #d42b2b;margin-left:5px;
 }
-.video-caption{
-position:absolute;bottom:1.5rem;left:1.5rem;
-font-family:‘DM Mono’,monospace;font-size:0.6rem;
-letter-spacing:0.15em;text-transform:uppercase;
-color:var(–muted);
-}
-.video-label{
-position:absolute;top:1.5rem;right:1.5rem;
-font-family:‘DM Mono’,monospace;font-size:0.58rem;
+.v-tl{
+position:absolute;top:1.2rem;right:1.2rem;
+font-family:‘DM Mono’,monospace;font-size:0.55rem;
 letter-spacing:0.12em;text-transform:uppercase;
-color:var(–red);border:1px solid var(–border-red);
-padding:0.3rem 0.7rem;
+color:#d42b2b;border:1px solid rgba(212,43,43,0.3);padding:0.28rem 0.65rem;
 }
-.video-note{
-text-align:center;margin-top:1.5rem;
-font-family:‘DM Mono’,monospace;font-size:0.65rem;
-letter-spacing:0.12em;color:var(–muted);
+.v-bl{
+position:absolute;bottom:1.2rem;left:1.2rem;
+font-family:‘DM Mono’,monospace;font-size:0.55rem;
+letter-spacing:0.12em;text-transform:uppercase;color:#333;
+}
+.vnote{
+text-align:center;margin-top:1.2rem;
+font-family:‘DM Mono’,monospace;font-size:0.58rem;letter-spacing:0.1em;color:#252525;
 }
 
 /* ── LEADERBOARD ── */
-#board{background:var(–black)}
-.board-wrap{margin-top:3rem}
-.board-header{
-display:grid;grid-template-columns:50px 1fr 100px 120px 100px;
-gap:1rem;padding:0.6rem 1.5rem;
-font-family:‘DM Mono’,monospace;font-size:0.58rem;
-letter-spacing:0.18em;text-transform:uppercase;color:var(–muted);
-border-bottom:1px solid var(–border);
+#board{background:#080808}
+.bhead{
+display:grid;grid-template-columns:54px 1fr 100px 140px 120px;
+gap:1rem;padding:0.7rem 1.5rem;
+font-family:‘DM Mono’,monospace;font-size:0.55rem;
+letter-spacing:0.18em;text-transform:uppercase;color:#252525;
+border-bottom:1px solid rgba(255,255,255,0.06);
 }
-.board-row{
-display:grid;grid-template-columns:50px 1fr 100px 120px 100px;
-gap:1rem;padding:1.1rem 1.5rem;
-border-bottom:1px solid var(–border);
-align-items:center;
+.brow{
+display:grid;grid-template-columns:54px 1fr 100px 140px 120px;
+gap:1rem;padding:1.3rem 1.5rem;
+border-bottom:1px solid rgba(255,255,255,0.05);
+align-items:center;position:relative;overflow:hidden;
 transition:background 0.2s;
-position:relative;overflow:hidden;
 }
-.board-row:hover{background:rgba(255,255,255,0.02)}
-.board-row.gold{background:rgba(224,30,46,0.05)}
-.board-row.gold::before{
-content:’’;position:absolute;left:0;top:0;bottom:0;width:3px;
-background:var(–red);
-}
-.rank{
+.brow:hover{background:rgba(255,255,255,0.018)}
+.brow.top{background:rgba(212,43,43,0.04)}
+.brow.top::before{content:’’;position:absolute;left:0;top:0;bottom:0;width:3px;background:#d42b2b}
+.rn{
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:800;font-size:1.4rem;color:var(–muted);
+font-weight:900;font-size:1.6rem;color:#1c1c1c;
 }
-.board-row.gold .rank{color:var(–red)}
+.brow.top .rn{color:#d42b2b}
 .rep-name{
 font-family:‘Barlow Condensed’,sans-serif;
-font-weight:600;font-size:1.1rem;letter-spacing:0.03em;
+font-weight:700;font-size:1.15rem;letter-spacing:0.03em;color:#f0f0f0;
 }
-.rep-loc{
-display:block;font-size:0.75rem;color:var(–muted);
-font-family:‘DM Mono’,monospace;letter-spacing:0.1em;margin-top:0.1rem;
-}
-.accounts{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:700;font-size:1.2rem;text-align:center;
-}
-.earnings{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:800;font-size:1.3rem;color:var(–red);text-align:right;
-}
-.board-row.gold .earnings{color:#ff3344}
-.badge{
+.rep-nick{
 font-family:‘DM Mono’,monospace;font-size:0.55rem;
-letter-spacing:0.1em;text-transform:uppercase;
-padding:0.25rem 0.6rem;text-align:center;
+letter-spacing:0.12em;text-transform:uppercase;color:#d42b2b;margin-top:0.15rem;
 }
-.badge-fire{background:rgba(224,30,46,0.12);color:var(–red);border:1px solid var(–border-red)}
-.badge-hot{background:rgba(255,255,255,0.05);color:var(–mid);border:1px solid var(–border)}
-.board-week{
-margin-top:1rem;
-font-family:‘DM Mono’,monospace;font-size:0.6rem;
-letter-spacing:0.12em;text-transform:uppercase;color:var(–muted);
-text-align:right;
+.rep-sub{
+display:block;font-family:‘DM Mono’,monospace;font-size:0.5rem;
+letter-spacing:0.1em;text-transform:uppercase;color:#252525;margin-top:0.15rem;
+}
+.acct{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:800;font-size:1.3rem;color:#f0f0f0;text-align:center;
+}
+.earn{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-size:1.3rem;color:#888;text-align:right;
+}
+.brow.top .earn{color:#d42b2b}
+.badge{
+font-family:‘DM Mono’,monospace;font-size:0.5rem;
+letter-spacing:0.1em;text-transform:uppercase;
+padding:0.28rem 0.65rem;text-align:center;
+border:1px solid rgba(255,255,255,0.06);color:#2a2a2a;
+}
+.badge.fire{border-color:rgba(212,43,43,0.28);color:#d42b2b}
+.bfoot{
+margin-top:1rem;text-align:right;
+font-family:‘DM Mono’,monospace;font-size:0.54rem;
+letter-spacing:0.12em;text-transform:uppercase;color:#1e1e1e;
 }
 
 /* ── PAY ── */
-#pay{background:var(–off-black)}
-.pay-intro{max-width:560px;color:var(–mid);font-size:1rem;line-height:1.7;margin-bottom:3.5rem}
+#pay{background:#0c0c0c}
+.pay-intro{max-width:540px;color:#484848;font-size:0.96rem;line-height:1.8;margin-bottom:3.5rem}
 .pay-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-background:var(–border);border:1px solid var(–border);
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:1px;background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.06);
 }
-.pay-card{
-background:var(–black);padding:2.5rem 2rem;
-transition:background 0.2s;
+.pcard{background:#080808;padding:2.5rem 2rem;transition:background 0.2s}
+.pcard:hover{background:#0d0d0d}
+.pcard.mid{border-top:3px solid #d42b2b}
+.ptier{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.2em;text-transform:uppercase;color:#333;margin-bottom:1rem;
 }
-.pay-card:hover{background:#0e0e0e}
-.pay-tier{
-font-family:‘DM Mono’,monospace;font-size:0.6rem;
-letter-spacing:0.2em;text-transform:uppercase;color:var(–muted);margin-bottom:1rem;
-}
-.pay-range{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:900;font-size:2.6rem;line-height:1;color:var(–white);margin-bottom:0.3rem;
-}
-.pay-range span{color:var(–red)}
-.pay-sub{font-size:0.82rem;color:var(–muted);margin-bottom:1.5rem}
-.pay-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
-.pay-list li{
-font-size:0.88rem;color:var(–mid);
-display:flex;gap:0.7rem;align-items:flex-start;line-height:1.5;
-}
-.pay-list li::before{content:‘→’;color:var(–red);flex-shrink:0}
-.pay-highlight{border-top:2px solid var(–red) !important}
-.pay-pop-tag{
+.ppop{
 display:inline-block;margin-bottom:0.8rem;
-font-family:‘DM Mono’,monospace;font-size:0.55rem;
-letter-spacing:0.15em;text-transform:uppercase;
-background:var(–red);color:var(–white);padding:0.3rem 0.8rem;
+font-family:‘DM Mono’,monospace;font-size:0.52rem;
+letter-spacing:0.14em;text-transform:uppercase;
+background:#d42b2b;color:#f0f0f0;padding:0.28rem 0.7rem;
 }
+.prange{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-size:3rem;line-height:1;color:#f0f0f0;margin-bottom:0.3rem;
+}
+.prange em{font-style:normal;color:#d42b2b}
+.psub{font-size:0.8rem;color:#333;margin-bottom:1.5rem}
+.plist{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.plist li{
+font-size:0.86rem;color:#484848;
+display:flex;gap:0.8rem;align-items:flex-start;line-height:1.5;
+}
+.plist li::before{content:‘→’;color:#d42b2b;flex-shrink:0}
+
+/* ── A DAY IN THE LIFE ── */
+#day{background:#080808}
+.day-grid{
+margin-top:3rem;
+display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);
+}
+.day-card{background:#080808;padding:2rem;transition:background 0.2s}
+.day-card:hover{background:#0d0d0d}
+.day-time{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.18em;text-transform:uppercase;color:#d42b2b;margin-bottom:0.6rem;
+}
+.day-title{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:700;font-size:1.3rem;letter-spacing:0.03em;
+color:#f0f0f0;margin-bottom:0.5rem;
+}
+.day-desc{font-size:0.86rem;color:#444;line-height:1.65}
 
 /* ── TESTIMONIALS ── */
-#reps{background:var(–black)}
-.testi-grid{
+#reps{background:#0c0c0c}
+.tgrid{
 margin-top:3rem;
-display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:1px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);
 }
-.testi-card{
-background:var(–card);border:1px solid var(–border);
-padding:2rem;position:relative;overflow:hidden;
-transition:border-color 0.25s,transform 0.25s;
+.tcard{
+background:#080808;padding:2.2rem 2rem;
+transition:background 0.2s;position:relative;overflow:hidden;
 }
-.testi-card:hover{border-color:var(–border-red);transform:translateY(-3px)}
-.testi-card::before{
-content:’”’;
-position:absolute;right:1.2rem;top:0.5rem;
-font-family:‘Barlow Condensed’,sans-serif;
-font-size:7rem;font-weight:900;
-color:rgba(224,30,46,0.08);line-height:1;
-pointer-events:none;
+.tcard:hover{background:#0d0d0d}
+.tcard::after{
+content:’”’;position:absolute;right:1rem;top:-0.5rem;
+font-family:‘Barlow Condensed’,sans-serif;font-size:8rem;font-weight:900;
+color:rgba(212,43,43,0.07);line-height:1;pointer-events:none;
 }
-.testi-text{
-font-size:0.92rem;line-height:1.7;color:var(–mid);
-margin-bottom:1.5rem;position:relative;z-index:1;
-}
-.testi-name{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:700;font-size:1rem;letter-spacing:0.05em;color:var(–white);
-}
-.testi-meta{
-font-family:‘DM Mono’,monospace;font-size:0.58rem;
-letter-spacing:0.12em;text-transform:uppercase;color:var(–red);margin-top:0.2rem;
-}
-.testi-stars{display:flex;gap:3px;margin-bottom:1rem}
-.star{color:var(–red);font-size:12px}
+.tstars{display:flex;gap:3px;margin-bottom:1.2rem}
+.tstar{color:#d42b2b;font-size:12px}
+.ttext{font-size:0.88rem;line-height:1.8;color:#484848;margin-bottom:1.5rem;position:relative;z-index:1}
+.tname{font-family:‘Barlow Condensed’,sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.04em;color:#f0f0f0}
+.tmeta{font-family:‘DM Mono’,monospace;font-size:0.54rem;letter-spacing:0.12em;text-transform:uppercase;color:#d42b2b;margin-top:0.2rem}
 
-/* ── WHY VLR ── */
-#why{background:var(–off-black)}
+/* ── REAL TALK ── */
+#talk{background:#0c0c0c}
+.talk-grid{
+margin-top:3rem;
+display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;
+}
+.talk-item{border-left:2px solid rgba(255,255,255,0.08);padding-left:1.5rem}
+.talk-q{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:700;font-size:1.15rem;letter-spacing:0.03em;color:#f0f0f0;margin-bottom:0.6rem;
+}
+.talk-a{font-size:0.88rem;color:#444;line-height:1.7}
+.talk-a strong{color:#d42b2b;font-weight:500}
+
+/* ── WHY ── */
+#why{background:#080808}
 .why-grid{
 margin-top:3rem;
 display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-background:var(–border);border:1px solid var(–border);
+background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);
 }
-.why-card{
-background:var(–black);padding:2rem 1.5rem;
-transition:background 0.2s;
+.wcard{background:#080808;padding:2.2rem 1.6rem;transition:background 0.2s}
+.wcard:hover{background:#0d0d0d}
+.wnum{
+font-family:‘Barlow Condensed’,sans-serif;font-weight:900;font-size:3rem;
+color:rgba(212,43,43,0.12);line-height:1;margin-bottom:1rem;
 }
-.why-card:hover{background:#0c0c0c}
-.why-icon{font-size:1.8rem;margin-bottom:1rem}
-.why-title{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:700;font-size:1.2rem;letter-spacing:0.04em;
-margin-bottom:0.6rem;
+.wtitle{
+font-family:‘Barlow Condensed’,sans-serif;font-weight:700;font-size:1.15rem;
+letter-spacing:0.04em;color:#f0f0f0;margin-bottom:0.6rem;
 }
-.why-desc{font-size:0.85rem;color:var(–muted);line-height:1.6}
+.wdesc{font-size:0.84rem;color:#3a3a3a;line-height:1.65}
 
-/* ── CTA ── */
+/* ── APPLY ── */
 #apply{
-background:var(–red);color:var(–white);
-text-align:center;padding:6rem 2.5rem;border-bottom:none;
+background:#d42b2b;color:#f0f0f0;
+text-align:center;padding:7rem 2.5rem;border-bottom:none;
 }
-#apply .s-tag{color:rgba(255,255,255,0.6);justify-content:center}
-#apply .s-tag::before{background:rgba(255,255,255,0.4)}
-#apply .s-head{color:var(–white)}
-#apply .s-head em{color:var(–black)}
-#apply p{color:rgba(255,255,255,0.75);max-width:480px;margin:1rem auto 2.5rem;font-size:1rem;line-height:1.65}
-.btn-black{
-background:var(–black);color:var(–white);
-font-family:‘DM Mono’,monospace;font-size:0.7rem;
+#apply .stag{color:rgba(255,255,255,0.45);justify-content:center}
+#apply .stag::before{background:rgba(255,255,255,0.3)}
+#apply .shead{color:#f0f0f0}
+#apply .shead em{color:#080808}
+#apply p{color:rgba(255,255,255,0.6);max-width:440px;margin:1rem auto 2.5rem;font-size:1rem;line-height:1.7}
+.btn-dark{
+background:#080808;color:#f0f0f0;
+font-family:‘DM Mono’,monospace;font-size:0.68rem;
 letter-spacing:0.18em;text-transform:uppercase;
-padding:1rem 2.5rem;text-decoration:none;
-transition:background 0.2s;display:inline-block;
+padding:1rem 2.8rem;display:inline-block;transition:background 0.2s;
 }
-.btn-black:hover{background:#1a1a1a}
-.apply-or{
-display:block;margin-top:1.2rem;
-font-family:‘DM Mono’,monospace;font-size:0.62rem;
-letter-spacing:0.12em;color:rgba(255,255,255,0.5);
-}
+.btn-dark:hover{background:#181818}
+.apply-note{display:block;margin-top:1rem;font-family:‘DM Mono’,monospace;font-size:0.56rem;letter-spacing:0.12em;color:rgba(255,255,255,0.3)}
 
 /* ── FOOTER ── */
 footer{
-background:var(–black);
-padding:2rem 2.5rem;
+background:#080808;padding:2.2rem 2.5rem;
 display:flex;align-items:center;justify-content:space-between;
-flex-wrap:wrap;gap:1rem;border-top:1px solid var(–border);
+flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,0.06);
 }
-.footer-logo{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:900;font-size:1.4rem;letter-spacing:0.1em;color:var(–white);
-}
-.footer-logo span{color:var(–red)}
-.footer-copy{
-font-family:‘DM Mono’,monospace;font-size:0.58rem;
-letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);
-}
-.footer-alder{
-font-family:‘DM Mono’,monospace;font-size:0.58rem;
-letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);
-}
-.footer-alder span{color:var(–red)}
+.flogo{font-family:‘Barlow Condensed’,sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:0.1em;color:#f0f0f0}
+.flogo span{color:#d42b2b}
+.fcopy{font-family:‘DM Mono’,monospace;font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;color:#1e1e1e}
+.fd3{font-family:‘DM Mono’,monospace;font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;color:#1e1e1e}
+.fd3 span{color:#333}
 
-/* ── TICKER ── */
-.ticker-wrap{
-background:var(–red);overflow:hidden;
-padding:0.6rem 0;border-top:none;border-bottom:1px solid var(–border);
-}
-.ticker{
-display:flex;gap:3rem;
-animation:tick 22s linear infinite;white-space:nowrap;
-}
-.ticker-item{
-font-family:‘Barlow Condensed’,sans-serif;
-font-weight:600;font-size:0.9rem;
-letter-spacing:0.15em;text-transform:uppercase;
-color:var(–white);flex-shrink:0;display:flex;gap:3rem;align-items:center;
-}
-.ticker-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.5);flex-shrink:0}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ── ANIMS ── */
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fromright{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
 
-/* ── ANIM ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeLeft{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
-
-/* ── MOBILE ── */
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
 nav{padding:1rem 1.2rem}
-.nav-links,.nav-badge{display:none}
-section{padding:4rem 1.2rem}
-.hero{padding:7rem 1.2rem 4rem}
-.hero-stats{display:none}
-.pay-grid,.testi-grid,.why-grid{grid-template-columns:1fr}
-.board-header,.board-row{grid-template-columns:40px 1fr 80px}
-.board-row .badge,.board-header span:last-child{display:none}
+.nav-links{display:none}
+.nav-region{display:none}
+section,.hero{padding-left:1.2rem;padding-right:1.2rem}
+.hero-stats,.hero-d3-stamp{display:none}
+.pay-grid,.tgrid,.why-grid{grid-template-columns:1fr}
+.bhead,.brow{grid-template-columns:42px 1fr 80px}
+.brow .badge,.brow .earn,.bhead span:nth-child(4),.bhead span:nth-child(5){display:none}
+.region-bar{padding:1.5rem 1.2rem;flex-wrap:wrap;gap:1.5rem}
+.rbar-stats{flex-wrap:wrap}
+.rbar-item{min-width:100px;padding:0 1rem}
+.day-grid,.talk-grid{grid-template-columns:1fr}
 footer{flex-direction:column;align-items:flex-start}
 }
 </style>
@@ -471,7 +464,7 @@ footer{flex-direction:column;align-items:flex-start}
 <!-- NAV -->
 
 <nav>
-  <a class="nav-logo" href="#">VLR<span>.</span></a>
+  <div class="nav-logo">VLR<span>.</span></div>
   <ul class="nav-links">
     <li><a href="#video">The Team</a></li>
     <li><a href="#board">Standings</a></li>
@@ -479,36 +472,21 @@ footer{flex-direction:column;align-items:flex-start}
     <li><a href="#reps">Reps Speak</a></li>
     <li><a href="#apply">Join</a></li>
   </ul>
-  <div class="nav-badge">Alder Home Security</div>
+  <div class="nav-right">
+    <div class="nav-region">Alder Region D3</div>
+    <div class="nav-alder">Home Security</div>
+  </div>
 </nav>
 
 <!-- TICKER -->
 
 <div class="ticker-wrap">
-  <div class="ticker">
-    <div class="ticker-item">
-      VLR — VALOR <span class="ticker-dot"></span>
-      Alder Home Security <span class="ticker-dot"></span>
-      Top-Performing Sales Team <span class="ticker-dot"></span>
-      Uncapped Commission <span class="ticker-dot"></span>
-      Real People. Real Pay. <span class="ticker-dot"></span>
-      VLR — VALOR <span class="ticker-dot"></span>
-      Alder Home Security <span class="ticker-dot"></span>
-      Top-Performing Sales Team <span class="ticker-dot"></span>
-      Uncapped Commission <span class="ticker-dot"></span>
-      Real People. Real Pay. <span class="ticker-dot"></span>
+  <div class="ticker-inner">
+    <div class="ticker-set">
+      <div class="titem">VLR — VALOR <span class="tdot"></span> Alder Region D3 <span class="tdot"></span> Elite Sales Division <span class="tdot"></span> Uncapped Commission <span class="tdot"></span> Real People. Real Pay. <span class="tdot"></span> No Ceiling. Just Results. <span class="tdot"></span></div>
     </div>
-    <div class="ticker-item" aria-hidden="true">
-      VLR — VALOR <span class="ticker-dot"></span>
-      Alder Home Security <span class="ticker-dot"></span>
-      Top-Performing Sales Team <span class="ticker-dot"></span>
-      Uncapped Commission <span class="ticker-dot"></span>
-      Real People. Real Pay. <span class="ticker-dot"></span>
-      VLR — VALOR <span class="ticker-dot"></span>
-      Alder Home Security <span class="ticker-dot"></span>
-      Top-Performing Sales Team <span class="ticker-dot"></span>
-      Uncapped Commission <span class="ticker-dot"></span>
-      Real People. Real Pay. <span class="ticker-dot"></span>
+    <div class="ticker-set" aria-hidden="true">
+      <div class="titem">VLR — VALOR <span class="tdot"></span> Alder Region D3 <span class="tdot"></span> Elite Sales Division <span class="tdot"></span> Uncapped Commission <span class="tdot"></span> Real People. Real Pay. <span class="tdot"></span> No Ceiling. Just Results. <span class="tdot"></span></div>
     </div>
   </div>
 </div>
@@ -516,181 +494,200 @@ footer{flex-direction:column;align-items:flex-start}
 <!-- HERO -->
 
 <section class="hero">
-  <div class="hero-scanlines"></div>
-  <div class="hero-red-bar"></div>
+  <div class="hero-redbar"></div>
+  <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <div class="hero-eyebrow">Alder Home Security · Elite Sales Division</div>
-  <h1>
-    <div class="hero-vlr">V<span>L</span>R</div>
-    <div class="hero-full">VALOR</div>
+  <div class="hero-d3-stamp">D3</div>
+  <div class="hero-eyebrow">Alder Home Security · Region D3 · Elite Sales</div>
+  <h1 class="hero-title">
+    V<span class="outline">L</span><span class="red">R</span>
   </h1>
+  <div class="hero-wordmark">VALOR</div>
   <div class="hero-divider"></div>
   <p class="hero-sub">
     We're not a team. We're a <strong>standard.</strong><br>
     Built for reps who don't want a ceiling — just a door to walk through and a city to own. If you're serious about sales, you belong here.
   </p>
   <div class="hero-ctas">
-    <a href="#apply" class="btn-red">Join VLR</a>
+    <a href="#apply" class="btn-white">Join VLR</a>
     <a href="#board" class="btn-ghost">See Standings</a>
   </div>
   <div class="hero-stats">
-    <div>
-      <div class="stat-num">$12K</div>
-      <div class="stat-label">Top Rep / Month</div>
-    </div>
-    <div>
-      <div class="stat-num">94%</div>
-      <div class="stat-label">Retention Rate</div>
-    </div>
-    <div>
-      <div class="stat-num">#1</div>
-      <div class="stat-label">Regional Team</div>
-    </div>
+    <div><div class="snum">$12<em>K</em></div><div class="slabel">Top Rep / Month</div></div>
+    <div><div class="snum">D3<em>#1</em></div><div class="slabel">Region Rank</div></div>
+    <div><div class="snum">48<em>H</em></div><div class="slabel">Avg. Onboard</div></div>
   </div>
 </section>
+
+<!-- D3 REGION BAR -->
+
+<div class="region-bar">
+  <div class="rbar-label">D3 — Season Stats</div>
+  <div class="rbar-stats">
+    <div class="rbar-item">
+      <div class="rbar-num">312<span>+</span></div>
+      <div class="rbar-desc">Accounts This Season</div>
+    </div>
+    <div class="rbar-item">
+      <div class="rbar-num">#<span>1</span></div>
+      <div class="rbar-desc">Region Ranking</div>
+    </div>
+    <div class="rbar-item">
+      <div class="rbar-num">$74<span>K</span></div>
+      <div class="rbar-desc">Team Earnings / Month</div>
+    </div>
+    <div class="rbar-item">
+      <div class="rbar-num">91<span>%</span></div>
+      <div class="rbar-desc">Install Rate</div>
+    </div>
+    <div class="rbar-item">
+      <div class="rbar-num">6<span>+</span></div>
+      <div class="rbar-desc">Active Markets</div>
+    </div>
+  </div>
+</div>
 
 <!-- VIDEO -->
 
 <section id="video">
-  <div class="s-tag">The Team</div>
-  <h2 class="s-head">SEE WHAT WE'RE<br><em>ACTUALLY</em> ABOUT</h2>
-  <div class="video-wrap" onclick="this.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'YOUR_VIDEO_URL\' frameborder=\'0\' allow=\'autoplay; fullscreen\' style=\'position:absolute;inset:0\' allowfullscreen></iframe>';this.style.background='#000'">
-    <div class="video-bg-text">VLR</div>
-    <div class="play-ring">
-      <div class="play-tri"></div>
-    </div>
-    <div class="video-label">▶ TEAM FILM</div>
-    <div class="video-caption">VALOR · Alder Home Security · 2024 Season</div>
+  <div class="stag">The Team</div>
+  <h2 class="shead">SEE WHAT WE'RE<br><em>ACTUALLY</em> ABOUT</h2>
+  <div class="video-wrap" onclick="this.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'YOUR_VIDEO_EMBED_URL\' frameborder=\'0\' allow=\'autoplay; fullscreen\' style=\'position:absolute;inset:0;width:100%;height:100%\' allowfullscreen></iframe>';this.style.background='#000'">
+    <div class="vbg">VLR</div>
+    <div class="play-ring"><div class="play-tri"></div></div>
+    <div class="v-tl">▶ TEAM FILM</div>
+    <div class="v-bl">VALOR · Alder D3 · 2025</div>
   </div>
-  <p class="video-note">Drop your video link in — replace YOUR_VIDEO_URL above with your YouTube or Vimeo embed link</p>
+  <p class="vnote">Replace YOUR_VIDEO_EMBED_URL with your YouTube or Vimeo embed link</p>
 </section>
 
 <!-- LEADERBOARD -->
 
 <section id="board">
-  <div class="s-tag">Current Standings</div>
-  <h2 class="s-head">THE<br><em>BOARD</em></h2>
-  <div class="board-wrap">
-    <div class="board-header">
-      <span>#</span>
-      <span>Rep</span>
-      <span style="text-align:center">Accts</span>
-      <span style="text-align:right">Est. Month</span>
-      <span style="text-align:center">Status</span>
-    </div>
-
-```
-<div class="board-row gold">
-  <div class="rank">1</div>
-  <div>
-    <div class="rep-name">Jordan M.</div>
-    <span class="rep-loc">Salt Lake · Week 3</span>
+  <div class="stag">Current Standings</div>
+  <h2 class="shead">THE<br><em>BOARD</em></h2>
+  <div class="bhead">
+    <span>#</span><span>Rep</span>
+    <span style="text-align:center">Accts</span>
+    <span style="text-align:right">Est. Month</span>
+    <span style="text-align:center">Status</span>
   </div>
-  <div class="accounts">47</div>
-  <div class="earnings">$11,280</div>
-  <div class="badge badge-fire">🔥 On Fire</div>
-</div>
 
-<div class="board-row">
-  <div class="rank">2</div>
-  <div>
-    <div class="rep-name">Cass T.</div>
-    <span class="rep-loc">Provo · Week 3</span>
+  <div class="brow top">
+    <div class="rn">1</div>
+    <div><div class="rep-name">Danny Leighton</div><div class="rep-nick">The Reeg</div><span class="rep-sub">SLC · D3 Lead · Week 3</span></div>
+    <div class="acct">54</div>
+    <div class="earn">$12,960</div>
+    <div class="badge fire">On Fire</div>
   </div>
-  <div class="accounts">38</div>
-  <div class="earnings">$9,120</div>
-  <div class="badge badge-fire">🔥 On Fire</div>
-</div>
+  <div class="brow">
+    <div class="rn">2</div>
+    <div><div class="rep-name">Erik Alvarez</div><div class="rep-nick">Quality King</div><span class="rep-sub">Provo · Week 3</span></div>
+    <div class="acct">41</div>
+    <div class="earn">$9,840</div>
+    <div class="badge fire">On Fire</div>
+  </div>
+  <div class="brow">
+    <div class="rn">3</div>
+    <div><div class="rep-name">Lonnie Cawston</div><div class="rep-nick">Lobo Solitario</div><span class="rep-sub">Ogden · Week 3</span></div>
+    <div class="acct">36</div>
+    <div class="earn">$8,640</div>
+    <div class="badge fire">Rising</div>
+  </div>
+  <div class="brow">
+    <div class="rn">4</div>
+    <div><div class="rep-name">Marcus R.</div><div class="rep-nick">The Anchor</div><span class="rep-sub">West Valley · Week 3</span></div>
+    <div class="acct">27</div>
+    <div class="earn">$6,480</div>
+    <div class="badge">Steady</div>
+  </div>
+  <div class="brow">
+    <div class="rn">5</div>
+    <div><div class="rep-name">Destiny W.</div><div class="rep-nick">First Blood</div><span class="rep-sub">Draper · Week 3</span></div>
+    <div class="acct">20</div>
+    <div class="earn">$4,800</div>
+    <div class="badge">Steady</div>
+  </div>
+  <div class="brow">
+    <div class="rn">6</div>
+    <div><div class="rep-name">You?</div><div class="rep-nick">TBD</div><span class="rep-sub">Your Market · Your Week</span></div>
+    <div class="acct">—</div>
+    <div class="earn" style="color:#1e1e1e">$—</div>
+    <div class="badge">Open Spot</div>
+  </div>
 
-<div class="board-row">
-  <div class="rank">3</div>
-  <div>
-    <div class="rep-name">Marcus R.</div>
-    <span class="rep-loc">Ogden · Week 3</span>
-  </div>
-  <div class="accounts">34</div>
-  <div class="earnings">$8,160</div>
-  <div class="badge badge-hot">↑ Rising</div>
-</div>
-
-<div class="board-row">
-  <div class="rank">4</div>
-  <div>
-    <div class="rep-name">Destiny W.</div>
-    <span class="rep-loc">SLC · Week 3</span>
-  </div>
-  <div class="accounts">29</div>
-  <div class="earnings">$6,960</div>
-  <div class="badge badge-hot">↑ Rising</div>
-</div>
-
-<div class="board-row">
-  <div class="rank">5</div>
-  <div>
-    <div class="rep-name">Nate B.</div>
-    <span class="rep-loc">West Valley · Week 3</span>
-  </div>
-  <div class="accounts">22</div>
-  <div class="earnings">$5,280</div>
-  <div class="badge badge-hot">Steady</div>
-</div>
-
-<div class="board-row">
-  <div class="rank">6</div>
-  <div>
-    <div class="rep-name">Leila O.</div>
-    <span class="rep-loc">Draper · Week 3</span>
-  </div>
-  <div class="accounts">18</div>
-  <div class="earnings">$4,320</div>
-  <div class="badge badge-hot">Steady</div>
-</div>
-```
-
-  </div>
-  <div class="board-week">Updated weekly · Season totals tracked · This could be you ↑</div>
+  <div class="bfoot">Updated weekly · D3 Region Board · This could be you ↑</div>
 </section>
 
 <!-- PAY -->
 
 <section id="pay">
-  <div class="s-tag">The Pay</div>
-  <h2 class="s-head">NO CEILING.<br><em>JUST RESULTS.</em></h2>
-  <p class="pay-intro">Every account you close puts real money in your pocket. No salary cap, no hidden deductions, no politics. You close, you eat. Here's what it looks like in real numbers.</p>
+  <div class="stag">The Pay</div>
+  <h2 class="shead">NO CEILING.<br><em>JUST RESULTS.</em></h2>
+  <p class="pay-intro">You're not getting a salary. You're building a business. Every account you close is yours. No politics, no deductions, no fine print. Here's what the numbers actually look like.</p>
   <div class="pay-grid">
-    <div class="pay-card">
-      <div class="pay-tier">Getting Started</div>
-      <div class="pay-range">$2K–<span>5K</span></div>
-      <div class="pay-sub">per month · 10–20 accounts</div>
-      <ul class="pay-list">
+    <div class="pcard">
+      <div class="ptier">Months 1–2</div>
+      <div class="prange">$2K–<em>5K</em></div>
+      <div class="psub">per month · 10–20 accounts</div>
+      <ul class="plist">
         <li>~$240 per installed account</li>
-        <li>Full training provided</li>
+        <li>Full ride-along training</li>
         <li>Team support on every door</li>
-        <li>Weekly payout schedule</li>
+        <li>Weekly payout — no waiting</li>
       </ul>
     </div>
-    <div class="pay-card pay-highlight">
-      <div class="pay-pop-tag">Most Reps Hit This</div>
-      <div class="pay-tier">Finding Your Stride</div>
-      <div class="pay-range">$5K–<span>8K</span></div>
-      <div class="pay-sub">per month · 20–35 accounts</div>
-      <ul class="pay-list">
+    <div class="pcard mid">
+      <div class="ppop">Most D3 Reps Hit This</div>
+      <div class="ptier">Months 3–6</div>
+      <div class="prange">$5K–<em>8K</em></div>
+      <div class="psub">per month · 20–35 accounts</div>
+      <ul class="plist">
         <li>Bonuses kick in at 25 accounts</li>
-        <li>Promoted to area leads eligible</li>
-        <li>Priority territory access</li>
+        <li>Area lead track opens up</li>
+        <li>First priority on new territory</li>
         <li>VLR performance incentives</li>
       </ul>
     </div>
-    <div class="pay-card">
-      <div class="pay-tier">Top Performers</div>
-      <div class="pay-range">$8K–<span>12K+</span></div>
-      <div class="pay-sub">per month · 35+ accounts</div>
-      <ul class="pay-list">
-        <li>Uncapped — no max ceiling</li>
-        <li>Trip & prize competition eligible</li>
-        <li>Leadership track opens</li>
+    <div class="pcard">
+      <div class="ptier">Top of the Board</div>
+      <div class="prange">$8K–<em>12K+</em></div>
+      <div class="psub">per month · 35+ accounts</div>
+      <ul class="plist">
+        <li>Completely uncapped</li>
+        <li>Trip &amp; prize competitions</li>
+        <li>Leadership track eligible</li>
         <li>Your name on the board</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- A DAY IN THE LIFE -->
+
+<section id="day">
+  <div class="stag">The Grind</div>
+  <h2 class="shead">WHAT A <em>REAL</em><br>DAY LOOKS LIKE</h2>
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-time">7:30 AM</div>
+      <div class="day-title">Team Huddle</div>
+      <p class="day-desc">Every morning starts with a quick 15-minute stand-up. Danny runs the numbers from yesterday, calls out wins on the board, and maps the territory for the day. Energy in the room is different.</p>
+    </div>
+    <div class="day-card">
+      <div class="day-time">9:00 AM</div>
+      <div class="day-title">Hit the Doors</div>
+      <p class="day-desc">You're out by 9. VLR reps work structured routes — no wandering, no wasted doors. New reps ride with a senior for the first few weeks. You learn by watching the best do it live.</p>
+    </div>
+    <div class="day-card">
+      <div class="day-time">12:30 PM</div>
+      <div class="day-title">Midday Check-In</div>
+      <p class="day-desc">Quick sync with the team. Accounts logged, installs confirmed, afternoon territory locked in. Grab food, get back out. The afternoon shift is where the board moves.</p>
+    </div>
+    <div class="day-card">
+      <div class="day-time">6:30 PM</div>
+      <div class="day-title">End of Day</div>
+      <p class="day-desc">Log your accounts, check the updated standings, and decompress. Top reps are already thinking about tomorrow's route. You'll know exactly where you stand — no guessing.</p>
     </div>
   </div>
 </section>
@@ -698,81 +695,90 @@ footer{flex-direction:column;align-items:flex-start}
 <!-- TESTIMONIALS -->
 
 <section id="reps">
-  <div class="s-tag">Reps Speak</div>
-  <h2 class="s-head">DON'T TAKE<br><em>OUR WORD.</em></h2>
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <p class="testi-text">"I came in skeptical — I'd been burned by other D2D teams before. VLR was different from day one. Real training, real support, and I pulled $7,400 in my second month. The board isn't for show, it's motivation."</p>
-      <div class="testi-name">Marcus R.</div>
-      <div class="testi-meta">Rep · 8 Months with VLR</div>
+  <div class="stag">Reps Speak</div>
+  <h2 class="shead">DON'T TAKE<br><em>OUR WORD.</em></h2>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="tstars"><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span></div>
+      <p class="ttext">"I ran D2D for two other companies before VLR. Neither came close — not the culture, not the training, not the pay. Danny actually cares if you succeed. The board keeps everyone honest and hungry."</p>
+      <div class="tname">Danny L.</div>
+      <div class="tmeta">The Reeg · D3 Lead · 14 Months</div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <p class="testi-text">"I was fresh out of college with zero sales experience. They didn't care — they trained me right. Three months in I made more than my friends with 'real jobs.' The team culture actually makes you want to go knock."</p>
-      <div class="testi-name">Destiny W.</div>
-      <div class="testi-meta">Rep · 5 Months with VLR</div>
+    <div class="tcard">
+      <div class="tstars"><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span></div>
+      <p class="ttext">"Quality is everything in this game. VLR taught me that a clean account is worth more than three sloppy ones. My install rate is over 95% and my customers actually refer their neighbors. That's where real money is."</p>
+      <div class="tname">Erik A.</div>
+      <div class="tmeta">Quality King · 10 Months</div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <p class="testi-text">"Biggest thing for me was the honesty. They told me exactly what I'd make, exactly how hard it would be, and exactly what the top reps do differently. No games. I hit $11K last month and I'm not stopping."</p>
-      <div class="testi-name">Jordan M.</div>
-      <div class="testi-meta">Lead Rep · 14 Months with VLR</div>
+    <div class="tcard">
+      <div class="tstars"><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span><span class="tstar">★</span></div>
+      <p class="ttext">"I work best alone and VLR respects that. They set me up with territory, showed me the system, and let me run. I hit $8,600 last month. I've never had a job that paid me for actually working hard."</p>
+      <div class="tname">Lonnie C.</div>
+      <div class="tmeta">Lobo Solitario · 8 Months</div>
     </div>
   </div>
 </section>
 
-<!-- WHY VLR -->
+<!-- REAL TALK -->
+
+<section id="talk">
+  <div class="stag">Real Talk</div>
+  <h2 class="shead">QUESTIONS<br><em>ANSWERED.</em></h2>
+  <div class="talk-grid">
+    <div class="talk-item">
+      <div class="talk-q">Do I need sales experience?</div>
+      <p class="talk-a">No. Our best reps came in raw. What we can't teach is <strong>drive</strong> — if you have that, we handle the rest. Expect 2–3 weeks of real training before you're out on your own.</p>
+    </div>
+    <div class="talk-item">
+      <div class="talk-q">When do I get paid?</div>
+      <p class="talk-a">Weekly. Every account you close gets logged, installed, and paid out in the same cycle. No 30-day holds, no mystery deductions. <strong>You close, you get paid.</strong></p>
+    </div>
+    <div class="talk-item">
+      <div class="talk-q">What does the schedule actually look like?</div>
+      <p class="talk-a">Most reps are out 5 days a week, morning to early evening. It's not a 9-to-5 — it's a <strong>performance schedule.</strong> The harder you work, the faster your day ends with something to show for it.</p>
+    </div>
+    <div class="talk-item">
+      <div class="talk-q">What's the team culture like?</div>
+      <p class="talk-a">Competitive but not cutthroat. We celebrate wins on the board and call out effort publicly. The top reps genuinely help the new ones — because a <strong>stronger team means better territory.</strong></p>
+    </div>
+    <div class="talk-item">
+      <div class="talk-q">What makes D3 different from other regions?</div>
+      <p class="talk-a">D3 has consistently ranked #1 in Alder's regional standings for install rate and account quality. That's not luck — it's system. <strong>VLR is why.</strong></p>
+    </div>
+    <div class="talk-item">
+      <div class="talk-q">Is there room to grow?</div>
+      <p class="talk-a">Yes — Danny himself came up as a rep. We have active leadership tracks for high performers. <strong>If you want to run your own team,</strong> this is how you start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
 
 <section id="why">
-  <div class="s-tag">Why VLR</div>
-  <h2 class="s-head">WHAT SETS US<br><em>APART.</em></h2>
+  <div class="stag">Why VLR</div>
+  <h2 class="shead">WHAT SETS US<br><em>APART.</em></h2>
   <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">⚡</div>
-      <div class="why-title">Real Training</div>
-      <p class="why-desc">No throwing you at a door with a script. We ride with you, debrief with you, and build your skillset from the ground up.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🎯</div>
-      <div class="why-title">Premium Territory</div>
-      <p class="why-desc">VLR gets first access to the best neighborhoods. Less cold — more opportunity.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💰</div>
-      <div class="why-title">Weekly Payout</div>
-      <p class="why-desc">You don't wait a month to see your money. Accounts close, funds move. Simple.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🔥</div>
-      <div class="why-title">Team That Shows Up</div>
-      <p class="why-desc">VLR is a culture. We work hard, compete on the board, and genuinely celebrate each other's wins.</p>
-    </div>
+    <div class="wcard"><div class="wnum">01</div><div class="wtitle">Real Training</div><p class="wdesc">Ride-alongs, daily debriefs, and a system that actually works. You're not guessing — you're learning from people already on the board.</p></div>
+    <div class="wcard"><div class="wnum">02</div><div class="wtitle">D3 Territory</div><p class="wdesc">Region D3 gets first access to the best-performing markets. Less resistance, more opportunity, higher close rates.</p></div>
+    <div class="wcard"><div class="wnum">03</div><div class="wtitle">Weekly Payout</div><p class="wdesc">No waiting a month to see your money. Accounts close, installs confirm, funds move. Fast and clean.</p></div>
+    <div class="wcard"><div class="wnum">04</div><div class="wtitle">Culture That Wins</div><p class="wdesc">A team that competes hard and celebrates harder. The board isn't decoration — it's daily motivation.</p></div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- APPLY -->
 
 <section id="apply">
-  <div class="s-tag">Join the Team</div>
-  <h2 class="s-head">YOUR MOVE.<br><em>MAKE IT.</em></h2>
-  <p>We're selective. We're not looking for bodies — we're looking for people who are serious about building something. If that's you, let's talk.</p>
-  <a href="mailto:joinVLR@alderteam.com" class="btn-black">Apply to VLR</a>
-  <span class="apply-or">Or text the manager directly — link below</span>
+  <div class="stag">Join the Team</div>
+  <h2 class="shead">YOUR MOVE.<br><em>MAKE IT.</em></h2>
+  <p>We're selective. Not looking for bodies — looking for people serious about building something. If that's you, the door's open.</p>
+  <a href="mailto:joinVLR@alderteam.com" class="btn-dark">Apply to VLR</a>
+  <span class="apply-note">Or reach out to Danny Leighton directly — D3 Lead</span>
 </section>
 
-<!-- FOOTER -->
-
 <footer>
-  <div class="footer-logo">VLR<span>.</span></div>
-  <div class="footer-copy">© 2025 VALOR Sales Team</div>
-  <div class="footer-alder">A Division of <span>Alder Home Security</span></div>
+  <div class="flogo">VLR<span>.</span></div>
+  <div class="fcopy">© 2025 VALOR Sales Team</div>
+  <div class="fd3">Alder Home Security · <span>Region D3</span></div>
 </footer>
 
 </body>
