@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Alder — Sales Careers</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #080808;
+    --black2:   #0f0f0f;
+    --black3:   #161616;
+    --black4:   #1e1e1e;
+    --blue:     #1a6fd4;
+    --blue-bright: #2181f0;
+    --blue-light:  #4a9dff;
+    --blue-glow:   rgba(26,111,212,0.18);
+    --blue-border: rgba(26,111,212,0.35);
+    --white:    #ffffff;
+    --off:      #e8e8e8;
+    --muted:    #777777;
+    --border:   rgba(255,255,255,0.07);
+  }
+
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+body {
+background: var(–black);
+color: var(–white);
+font-family: ‘Open Sans’, sans-serif;
+overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+position: fixed; top:0; left:0; right:0;
+height: 68px;
+background: rgba(8,8,8,0.96);
+border-bottom: 1px solid var(–border);
+backdrop-filter: blur(12px);
+display: flex; align-items: center; justify-content: space-between;
+padding: 0 48px;
+z-index: 100;
+}
+
+.nav-logo { display: flex; align-items: center; gap: 12px; }
+
+.nav-logo-mark {
+width: 36px; height: 36px;
+background: var(–blue);
+border-radius: 6px;
+display: flex; align-items: center; justify-content: center;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 900; font-size: 18px; color: #fff;
+}
+
+.nav-logo-text {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 800; font-size: 20px; color: var(–white);
+}
+
+.nav-logo-text span {
+color: var(–blue-light);
+font-weight: 400; font-size: 14px; margin-left: 6px;
+}
+
+.nav-cta {
+background: var(–blue);
+color: #fff; text-decoration: none;
+border-radius: 6px; padding: 10px 24px;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 700; font-size: 14px; letter-spacing: 0.5px;
+transition: background 0.2s, transform 0.15s;
+}
+.nav-cta:hover { background: var(–blue-bright); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+min-height: 100vh;
+background: var(–black);
+display: flex; align-items: center;
+padding: 120px 48px 80px;
+position: relative; overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute; inset: 0;
+background-image:
+linear-gradient(rgba(26,111,212,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(26,111,212,0.04) 1px, transparent 1px);
+background-size: 48px 48px;
+}
+
+.hero::after {
+content: ‘’;
+position: absolute; top: -100px; right: -100px;
+width: 700px; height: 700px;
+background: radial-gradient(circle, rgba(26,111,212,0.1) 0%, transparent 65%);
+pointer-events: none;
+}
+
+.hero-inner {
+position: relative;
+max-width: 1200px; margin: 0 auto; width: 100%;
+display: grid;
+grid-template-columns: 1fr 420px;
+gap: 80px; align-items: center;
+}
+
+.hero-left { animation: up 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+
+@keyframes up {
+from { opacity:0; transform:translateY(32px); }
+to   { opacity:1; transform:translateY(0); }
+}
+
+.hero-badge {
+display: inline-flex; align-items: center; gap: 8px;
+border: 1px solid var(–blue-border);
+background: rgba(26,111,212,0.08);
+border-radius: 4px; padding: 7px 16px;
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px; font-weight: 700;
+letter-spacing: 2.5px; text-transform: uppercase;
+color: var(–blue-light); margin-bottom: 28px;
+animation: up 0.8s 0.05s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-badge .dot {
+width: 6px; height: 6px;
+background: var(–blue-light); border-radius: 50%;
+animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: clamp(42px, 6vw, 76px);
+font-weight: 900; line-height: 1.0;
+letter-spacing: -1.5px; margin-bottom: 24px;
+animation: up 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-title .blue { color: var(–blue-bright); }
+.hero-title .thin { font-weight: 300; display: block; }
+
+.hero-sub {
+font-size: 17px; font-weight: 300;
+color: var(–muted); line-height: 1.8;
+max-width: 500px; margin-bottom: 40px;
+animation: up 0.8s 0.15s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-sub strong { color: var(–off); font-weight: 600; }
+
+.hero-btns {
+display: flex; gap: 14px; flex-wrap: wrap;
+animation: up 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.btn-blue {
+background: var(–blue); color: #fff;
+text-decoration: none; border: none;
+border-radius: 6px; padding: 16px 36px;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+box-shadow: 0 8px 28px rgba(26,111,212,0.4);
+display: inline-flex; align-items: center; gap: 8px;
+}
+
+.btn-blue:hover {
+background: var(–blue-bright); transform: translateY(-2px);
+box-shadow: 0 12px 36px rgba(26,111,212,0.5);
+}
+
+.btn-outline {
+background: transparent; color: var(–off);
+text-decoration: none;
+border: 1px solid rgba(255,255,255,0.15);
+border-radius: 6px; padding: 16px 32px;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 600; font-size: 15px;
+cursor: pointer;
+transition: border-color 0.2s, background 0.2s;
+display: inline-flex; align-items: center; gap: 8px;
+}
+
+.btn-outline:hover {
+border-color: var(–blue-border);
+background: rgba(26,111,212,0.06);
+}
+
+/* hero card */
+.hero-card {
+background: var(–black3);
+border: 1px solid var(–border);
+border-radius: 12px; overflow: hidden;
+animation: up 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-card-header {
+background: var(–blue);
+padding: 20px 24px;
+display: flex; align-items: center; gap: 12px;
+}
+
+.hero-card-icon { font-size: 24px; }
+
+.hero-card-title {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 800; font-size: 16px; letter-spacing: 0.5px;
+}
+
+.hero-card-sub { font-size: 12px; opacity: 0.8; }
+
+.hero-card-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+
+.hero-stat-row {
+display: flex; justify-content: space-between; align-items: center;
+padding: 14px 16px;
+background: var(–black4);
+border-radius: 8px; border: 1px solid var(–border);
+}
+
+.hero-stat-label { font-size: 13px; color: var(–muted); }
+
+.hero-stat-val {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 800; font-size: 18px; color: var(–blue-light);
+}
+
+.hero-card-footer { padding: 0 24px 24px; }
+
+.hero-card-cta {
+display: block; text-align: center;
+background: var(–black4);
+border: 1px solid var(–blue-border);
+border-radius: 8px; padding: 16px;
+text-decoration: none; color: var(–blue-light);
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 700; font-size: 13px; letter-spacing: 0.3px;
+transition: background 0.2s, border-color 0.2s;
+}
+
+.hero-card-cta:hover { background: rgba(26,111,212,0.1); border-color: var(–blue); }
+
+/* STATS BAR */
+.stats {
+background: var(–black2);
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 0 48px;
+display: flex;
+}
+
+.stat-item {
+flex: 1; padding: 36px 24px; text-align: center;
+border-right: 1px solid var(–border);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 40px; font-weight: 900;
+color: var(–blue-bright); line-height: 1; margin-bottom: 8px;
+}
+
+.stat-label {
+font-size: 12px; font-weight: 600;
+letter-spacing: 1.5px; text-transform: uppercase;
+color: var(–muted);
+}
+
+/* SECTIONS */
+.section {
+padding: 96px 48px;
+max-width: 1200px; margin: 0 auto;
+}
+
+.section-eyebrow {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px; font-weight: 700;
+letter-spacing: 3px; text-transform: uppercase;
+color: var(–blue-light); margin-bottom: 12px;
+display: flex; align-items: center; gap: 10px;
+}
+
+.section-eyebrow::after {
+content: ‘’;
+display: block; flex: 1; max-width: 60px;
+height: 1px; background: var(–blue); opacity: 0.5;
+}
+
+.section-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: clamp(30px, 4vw, 48px);
+font-weight: 900; line-height: 1.1;
+letter-spacing: -0.5px; margin-bottom: 48px;
+}
+
+.section-title span { color: var(–blue-bright); }
+
+/* PERKS */
+.perks-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+background: var(–border);
+border: 1px solid var(–border);
+border-radius: 12px; overflow: hidden;
+}
+
+.perk {
+background: var(–black2);
+padding: 36px 32px;
+transition: background 0.2s;
+position: relative;
+}
+
+.perk::after {
+content: ‘’;
+position: absolute; top:0; left:0;
+width: 3px; height: 100%;
+background: var(–blue); opacity: 0;
+transition: opacity 0.2s;
+}
+
+.perk:hover { background: var(–black3); }
+.perk:hover::after { opacity: 1; }
+
+.perk-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+
+.perk-title {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 700; font-size: 16px;
+margin-bottom: 10px;
+}
+
+.perk-desc { font-size: 14px; color: var(–muted); line-height: 1.75; }
+
+/* STEPS */
+.steps-wrap {
+background: var(–black2);
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 96px 48px;
+}
+
+.steps-inner { max-width: 1200px; margin: 0 auto; }
+
+.steps-grid {
+display: grid; grid-template-columns: repeat(3,1fr);
+gap: 48px; position: relative;
+}
+
+.steps-grid::before {
+content: ‘’;
+position: absolute;
+top: 28px; left: calc(16% + 28px); right: calc(16% + 28px);
+height: 1px;
+background: linear-gradient(90deg, var(–blue) 0%, transparent 50%, var(–blue) 100%);
+opacity: 0.3;
+}
+
+.step { text-align: center; }
+
+.step-circle {
+width: 56px; height: 56px; border-radius: 50%;
+background: var(–blue);
+display: flex; align-items: center; justify-content: center;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 900; font-size: 22px; color: #fff;
+margin: 0 auto 24px; position: relative; z-index: 1;
+box-shadow: 0 0 0 8px rgba(26,111,212,0.1), 0 8px 24px rgba(26,111,212,0.3);
+}
+
+.step-title {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 800; font-size: 18px; margin-bottom: 12px;
+}
+
+.step-desc { font-size: 14px; color: var(–muted); line-height: 1.75; }
+
+/* EARNINGS */
+.earnings-layout {
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 80px; align-items: center;
+}
+
+.tiers { display: flex; flex-direction: column; gap: 12px; }
+
+.tier {
+background: var(–black2);
+border: 1px solid var(–border);
+border-radius: 8px; padding: 20px 24px;
+display: flex; justify-content: space-between; align-items: center;
+transition: border-color 0.2s; position: relative; overflow: hidden;
+}
+
+.tier::before {
+content: ‘’;
+position: absolute; top:0; left:0;
+width: 3px; height: 100%;
+background: var(–blue); opacity: 0;
+transition: opacity 0.2s;
+}
+
+.tier:hover { border-color: var(–blue-border); }
+.tier:hover::before { opacity: 1; }
+
+.tier.top {
+background: rgba(26,111,212,0.07);
+border-color: var(–blue-border);
+}
+
+.tier.top::before { opacity: 1; }
+
+.tier-left strong {
+display: block; font-family: ‘Montserrat’, sans-serif;
+font-weight: 700; font-size: 15px; margin-bottom: 4px;
+}
+
+.tier-left span { font-size: 13px; color: var(–muted); }
+
+.tier-amt {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 900; font-size: 22px; color: var(–blue-light);
+}
+
+.tier.top .tier-amt { color: var(–blue-bright); font-size: 26px; }
+
+/* FINAL CTA */
+.final {
+background: var(–black);
+border-top: 1px solid var(–border);
+padding: 100px 48px; text-align: center;
+position: relative; overflow: hidden;
+}
+
+.final::before {
+content: ‘’;
+position: absolute;
+bottom: -200px; left: 50%; transform: translateX(-50%);
+width: 800px; height: 400px;
+background: radial-gradient(ellipse, rgba(26,111,212,0.08) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.final-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: clamp(36px, 5vw, 64px);
+font-weight: 900; letter-spacing: -1px; line-height: 1.1;
+margin-bottom: 16px; position: relative;
+}
+
+.final-title span { color: var(–blue-bright); }
+
+.final-sub {
+font-size: 17px; color: var(–muted);
+margin-bottom: 56px; position: relative;
+}
+
+.contact-card {
+display: inline-flex;
+align-items: center; gap: 40px;
+background: var(–black3);
+border: 1px solid rgba(26,111,212,0.3);
+border-radius: 12px; padding: 40px 56px;
+flex-wrap: wrap; justify-content: center;
+position: relative;
+box-shadow: 0 0 60px rgba(26,111,212,0.08);
+}
+
+.contact-block { text-align: center; }
+
+.contact-label {
+font-size: 11px; font-weight: 700;
+letter-spacing: 2px; text-transform: uppercase;
+color: var(–muted); margin-bottom: 8px;
+}
+
+.contact-name {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 800; font-size: 22px; color: var(–off);
+}
+
+.contact-phone {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 900; font-size: 30px; color: var(–white);
+text-decoration: none; transition: color 0.2s;
+}
+
+.contact-phone:hover { color: var(–blue-light); }
+
+.contact-divider {
+width: 1px; height: 64px;
+background: rgba(255,255,255,0.08);
+}
+
+.call-now {
+background: var(–blue); color: #fff;
+text-decoration: none; border-radius: 8px;
+padding: 20px 48px;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 800; font-size: 16px;
+letter-spacing: 0.5px; text-transform: uppercase;
+display: inline-flex; align-items: center; gap: 10px;
+transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+box-shadow: 0 8px 32px rgba(26,111,212,0.4);
+}
+
+.call-now:hover {
+background: var(–blue-bright); transform: translateY(-2px);
+box-shadow: 0 16px 48px rgba(26,111,212,0.5);
+}
+
+/* FOOTER */
+footer {
+background: var(–black2);
+border-top: 1px solid var(–border);
+padding: 24px 48px;
+display: flex; align-items: center; justify-content: space-between;
+flex-wrap: wrap; gap: 12px;
+}
+
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+
+.footer-logo-mark {
+width: 28px; height: 28px; background: var(–blue);
+border-radius: 4px;
+display: flex; align-items: center; justify-content: center;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 900; font-size: 14px; color: #fff;
+}
+
+.footer-logo-text {
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 700; font-size: 15px; color: var(–muted);
+}
+
+.footer-right { font-size: 12px; color: var(–muted); opacity: 0.5; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+nav { padding: 0 20px; }
+.hero { padding: 100px 24px 60px; }
+.hero-inner { grid-template-columns: 1fr; gap: 48px; }
+.hero-card { max-width: 100%; }
+.stats { flex-wrap: wrap; padding: 0 24px; }
+.stat-item { min-width: 45%; border-right: none; border-bottom: 1px solid var(–border); }
+.section { padding: 64px 24px; }
+.perks-grid { grid-template-columns: 1fr; }
+.steps-wrap { padding: 64px 24px; }
+.steps-grid { grid-template-columns: 1fr; }
+.steps-grid::before { display: none; }
+.earnings-layout { grid-template-columns: 1fr; gap: 40px; }
+.final { padding: 72px 24px; }
+.contact-card { padding: 32px 24px; gap: 24px; }
+.contact-divider { display: none; }
+footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">A</div>
+    <div class="nav-logo-text">Alder <span>Careers</span></div>
+  </div>
+  <a href="tel:8014728010" class="nav-cta">📞 (801) 472-8010</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><div class="dot"></div> Now Hiring · Utah</div>
+      <h1 class="hero-title">
+        Start a Career<br>
+        <span class="blue">That Pays</span><br>
+        <span class="thin">What You're Worth.</span>
+      </h1>
+      <p class="hero-sub">
+        Alder is looking for driven, hungry individuals to join our <strong>residential sales team</strong> across Utah. No experience needed — if you're coachable and competitive, we'll build you into a top earner.
+      </p>
+      <div class="hero-btns">
+        <a href="tel:8014728010" class="btn-blue">📞 Call to Apply</a>
+        <a href="#opportunity" class="btn-outline">Learn More ↓</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <span class="hero-card-icon">🏠</span>
+        <div>
+          <div class="hero-card-title">Alder Residential Sales</div>
+          <div class="hero-card-sub">Direct Sales · Full Time · Utah</div>
+        </div>
+      </div>
+      <div class="hero-card-body">
+        <div class="hero-stat-row">
+          <span class="hero-stat-label">Average First Year</span>
+          <span class="hero-stat-val">$70K–$90K</span>
+        </div>
+        <div class="hero-stat-row">
+          <span class="hero-stat-label">Commission Type</span>
+          <span class="hero-stat-val">Uncapped</span>
+        </div>
+        <div class="hero-stat-row">
+          <span class="hero-stat-label">Start Date</span>
+          <span class="hero-stat-val">Immediate</span>
+        </div>
+        <div class="hero-stat-row">
+          <span class="hero-stat-label">Experience Required</span>
+          <span class="hero-stat-val">None</span>
+        </div>
+      </div>
+      <div class="hero-card-footer" style="padding-top:16px">
+        <a href="tel:8014728010" class="hero-card-cta">📲 Call Kenneth Tupea — (801) 472-8010</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">$80K+</div>
+    <div class="stat-label">Avg First Year Income</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Week 1</div>
+    <div class="stat-label">Start Closing Deals</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Uncapped Commission</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Top 5%</div>
+    <div class="stat-label">Industry Earning Potential</div>
+  </div>
+</div>
+
+<!-- WHY JOIN -->
+
+<div id="opportunity">
+  <div class="section">
+    <div class="section-eyebrow">Why Alder</div>
+    <div class="section-title">Built for people who<br><span>want more</span></div>
+    <div class="perks-grid">
+      <div class="perk">
+        <span class="perk-icon">💰</span>
+        <div class="perk-title">Uncapped Earning</div>
+        <div class="perk-desc">Your paycheck is entirely in your control. Top performers consistently earn $10,000–$20,000 per month. There's no cap and no ceiling.</div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">🏠</span>
+        <div class="perk-title">Residential Sales</div>
+        <div class="perk-desc">You'll work directly with homeowners — building relationships, solving real problems, and closing deals that protect families in their homes.</div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">🚀</span>
+        <div class="perk-title">Fast Onboarding</div>
+        <div class="perk-desc">We get you trained and in the field fast. No endless classroom time. You'll be closing real accounts within your first week.</div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">📈</span>
+        <div class="perk-title">Leadership Path</div>
+        <div class="perk-desc">Consistent performers move into management. Build your own team, earn overrides, and grow beyond just your own accounts.</div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">🤝</span>
+        <div class="perk-title">Team Culture</div>
+        <div class="perk-desc">Sales is a grind — you won't do it alone. We compete together, push each other, and celebrate wins as a team.</div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">🗺️</span>
+        <div class="perk-title">Travel Markets</div>
+        <div class="perk-desc">Opportunity to work campaigns across the country. See new markets, stack more income, and sharpen your skills in different environments.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+
+<div class="steps-wrap">
+  <div class="steps-inner">
+    <div class="section-eyebrow" style="justify-content:center">Process</div>
+    <div class="section-title" style="text-align:center;margin-bottom:56px">3 steps to <span>your first check</span></div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-circle">1</div>
+        <div class="step-title">Reach Out to Kenneth</div>
+        <div class="step-desc">One call with Kenneth Tupea to talk through the role, expectations, and pay. No pressure — just honest conversation about the opportunity.</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <div class="step-title">Get Trained</div>
+        <div class="step-desc">Focused, efficient training to get you closing quickly. We don't waste your time — you'll be ready to hit doors and start earning fast.</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-title">Start Earning</div>
+        <div class="step-desc">Get in the field, close accounts, and watch your commissions build. Your work ethic is your paycheck — it's that simple.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EARNINGS -->
+
+<div class="section">
+  <div class="earnings-layout">
+    <div>
+      <div class="section-eyebrow">Compensation</div>
+      <div class="section-title">Real numbers.<br><span>Real income.</span></div>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px">
+        Commission is tied directly to accounts closed. The more effort you put in, the more you take home. Here's what reps typically earn at different output levels.
+      </p>
+      <a href="tel:8014728010" class="btn-blue">📞 Ask About Pay Details</a>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-left"><strong>Getting Started</strong><span>3–5 accounts / week</span></div>
+        <div class="tier-amt">$2K–4K/mo</div>
+      </div>
+      <div class="tier">
+        <div class="tier-left"><strong>Full-Time Grind</strong><span>7–10 accounts / week</span></div>
+        <div class="tier-amt">$5K–8K/mo</div>
+      </div>
+      <div class="tier top">
+        <div class="tier-left"><strong>Top Rep</strong><span>12+ accounts / week</span></div>
+        <div class="tier-amt">$10K–20K/mo</div>
+      </div>
+      <div class="tier">
+        <div class="tier-left"><strong>Manager / Override</strong><span>Lead your own team</span></div>
+        <div class="tier-amt">$20K+/mo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+
+<div class="final">
+  <h2 class="final-title">Ready to <span>make a move?</span></h2>
+  <p class="final-sub">One call changes everything. Talk to Kenneth today.</p>
+  <div class="contact-card">
+    <div class="contact-block">
+      <div class="contact-label">Your Contact</div>
+      <div class="contact-name">Kenneth Tupea</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-block">
+      <div class="contact-label">Phone</div>
+      <a href="tel:8014728010" class="contact-phone">(801) 472-8010</a>
+    </div>
+    <div class="contact-divider"></div>
+    <a href="tel:8014728010" class="call-now">📲 Call Now</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">A</div>
+    <div class="footer-logo-text">Alder Sales · Kenneth Tupea</div>
+  </div>
+  <div class="footer-right">West Jordan, UT · (801) 472-8010 · Independent Sales Representative Opportunity</div>
+</footer>
+
+</body>
+</html>
