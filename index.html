@@ -2,569 +2,466 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join Alder — Sales Careers</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VLR — VALOR | Alder Home Security</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --black:    #080808;
-    --black2:   #0f0f0f;
-    --black3:   #161616;
-    --black4:   #1e1e1e;
-    --blue:     #1a6fd4;
-    --blue-bright: #2181f0;
-    --blue-light:  #4a9dff;
-    --blue-glow:   rgba(26,111,212,0.18);
-    --blue-border: rgba(26,111,212,0.35);
-    --white:    #ffffff;
-    --off:      #e8e8e8;
-    --muted:    #777777;
-    --border:   rgba(255,255,255,0.07);
-  }
-
-- { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-
-body {
-background: var(–black);
-color: var(–white);
-font-family: ‘Open Sans’, sans-serif;
-overflow-x: hidden;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e01e2e;
+  --red-dark:#9a0f1c;
+  --red-glow:rgba(224,30,46,0.18);
+  --black:#080808;
+  --off-black:#111;
+  --card:#141414;
+  --border:rgba(255,255,255,0.07);
+  --border-red:rgba(224,30,46,0.3);
+  --white:#f2f2f2;
+  --muted:#666;
+  --mid:#999;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:default;
 }
 
-/* NAV */
-nav {
-position: fixed; top:0; left:0; right:0;
-height: 68px;
-background: rgba(8,8,8,0.96);
-border-bottom: 1px solid var(–border);
-backdrop-filter: blur(12px);
-display: flex; align-items: center; justify-content: space-between;
-padding: 0 48px;
-z-index: 100;
+/* ── NOISE OVERLAY ── */
+body::before{
+content:’’;
+position:fixed;
+inset:0;
+background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘1’/%3E%3C/svg%3E”);
+opacity:0.025;
+pointer-events:none;
+z-index:999;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 12px; }
-
-.nav-logo-mark {
-width: 36px; height: 36px;
-background: var(–blue);
-border-radius: 6px;
-display: flex; align-items: center; justify-content: center;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 900; font-size: 18px; color: #fff;
+/* ── NAV ── */
+nav{
+position:fixed;top:0;left:0;right:0;z-index:100;
+display:flex;align-items:center;justify-content:space-between;
+padding:1.2rem 2.5rem;
+border-bottom:1px solid var(–border);
+background:rgba(8,8,8,0.9);
+backdrop-filter:blur(12px);
+}
+.nav-logo{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-size:1.8rem;letter-spacing:0.08em;
+color:var(–white);text-decoration:none;
+}
+.nav-logo span{color:var(–red)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+font-family:‘DM Mono’,monospace;font-size:0.65rem;
+letter-spacing:0.2em;text-transform:uppercase;
+color:var(–muted);text-decoration:none;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(–red)}
+.nav-badge{
+font-family:‘DM Mono’,monospace;font-size:0.6rem;
+letter-spacing:0.12em;text-transform:uppercase;
+color:var(–red);border:1px solid var(–border-red);
+padding:0.35rem 0.8rem;
 }
 
-.nav-logo-text {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 800; font-size: 20px; color: var(–white);
+/* ── HERO ── */
+.hero{
+min-height:100vh;
+display:flex;flex-direction:column;
+justify-content:center;
+padding:8rem 2.5rem 5rem;
+position:relative;overflow:hidden;
+border-bottom:1px solid var(–border);
+}
+.hero-scanlines{
+position:absolute;inset:0;
+background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.012) 2px,rgba(255,255,255,0.012) 4px);
+pointer-events:none;
+}
+.hero-red-bar{
+position:absolute;left:0;top:0;bottom:0;width:4px;
+background:var(–red);
+}
+.hero-glow{
+position:absolute;right:-10%;top:20%;
+width:600px;height:600px;
+background:radial-gradient(circle,var(–red-glow) 0%,transparent 65%);
+pointer-events:none;
+}
+.hero-eyebrow{
+font-family:‘DM Mono’,monospace;font-size:0.65rem;
+letter-spacing:0.25em;text-transform:uppercase;
+color:var(–red);margin-bottom:1.5rem;
+opacity:0;animation:fadeUp 0.7s 0.1s forwards;
+}
+.hero-vlr{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-style:italic;
+font-size:clamp(7rem,22vw,18rem);
+line-height:0.85;letter-spacing:-0.01em;
+color:var(–white);
+opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+}
+.hero-vlr span{
+color:transparent;
+-webkit-text-stroke:2px var(–red);
+}
+.hero-full{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:300;font-size:clamp(1.2rem,3vw,2rem);
+letter-spacing:0.5em;text-transform:uppercase;
+color:var(–muted);margin-top:0.5rem;
+opacity:0;animation:fadeUp 0.8s 0.35s forwards;
+}
+.hero-divider{
+width:60px;height:3px;background:var(–red);
+margin:2rem 0;
+opacity:0;animation:fadeUp 0.7s 0.45s forwards;
+}
+.hero-sub{
+max-width:520px;font-size:1.1rem;line-height:1.7;
+color:var(–mid);
+opacity:0;animation:fadeUp 0.8s 0.55s forwards;
+}
+.hero-sub strong{color:var(–white);font-weight:500}
+.hero-ctas{
+margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;
+opacity:0;animation:fadeUp 0.8s 0.65s forwards;
+}
+.btn-red{
+background:var(–red);color:var(–white);
+font-family:‘DM Mono’,monospace;font-size:0.7rem;
+letter-spacing:0.15em;text-transform:uppercase;
+padding:0.9rem 2.2rem;text-decoration:none;
+font-weight:500;transition:background 0.2s,transform 0.15s;
+border:none;cursor:pointer;
+}
+.btn-red:hover{background:#c01020;transform:translateY(-1px)}
+.btn-ghost{
+border:1px solid var(–border);color:var(–mid);
+font-family:‘DM Mono’,monospace;font-size:0.7rem;
+letter-spacing:0.15em;text-transform:uppercase;
+padding:0.9rem 2.2rem;text-decoration:none;
+transition:border-color 0.2s,color 0.2s;
+}
+.btn-ghost:hover{border-color:var(–red);color:var(–white)}
+.hero-stats{
+position:absolute;right:2.5rem;bottom:4rem;
+display:flex;flex-direction:column;gap:2rem;text-align:right;
+opacity:0;animation:fadeLeft 1s 0.9s forwards;
+}
+.stat-num{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:800;font-size:2.8rem;color:var(–red);line-height:1;
+}
+.stat-label{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.18em;text-transform:uppercase;color:var(–muted);margin-top:0.2rem;
 }
 
-.nav-logo-text span {
-color: var(–blue-light);
-font-weight: 400; font-size: 14px; margin-left: 6px;
+/* ── SECTION BASE ── */
+section{padding:6rem 2.5rem;border-bottom:1px solid var(–border)}
+.s-tag{
+font-family:‘DM Mono’,monospace;font-size:0.62rem;
+letter-spacing:0.22em;text-transform:uppercase;
+color:var(–red);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;
+}
+.s-tag::before{content:’’;display:block;width:24px;height:2px;background:var(–red)}
+.s-head{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:800;font-size:clamp(2.5rem,6vw,4.5rem);
+line-height:0.95;letter-spacing:0.02em;margin-bottom:1rem;
+}
+.s-head em{font-style:italic;color:var(–red)}
+
+/* ── VIDEO ── */
+#video{background:var(–off-black)}
+.video-wrap{
+margin-top:3rem;position:relative;
+aspect-ratio:16/9;max-width:900px;margin-inline:auto;
+background:#0d0d0d;border:1px solid var(–border);
+display:flex;align-items:center;justify-content:center;
+overflow:hidden;cursor:pointer;
+}
+.video-wrap:hover .play-ring{transform:scale(1.08)}
+.video-bg-text{
+position:absolute;
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-size:18rem;
+color:rgba(255,255,255,0.02);
+letter-spacing:-0.05em;
+user-select:none;
+}
+.play-ring{
+width:90px;height:90px;border-radius:50%;
+border:2px solid var(–red);
+display:flex;align-items:center;justify-content:center;
+position:relative;z-index:2;transition:transform 0.25s;
+}
+.play-tri{
+width:0;height:0;
+border-top:14px solid transparent;
+border-bottom:14px solid transparent;
+border-left:24px solid var(–red);
+margin-left:4px;
+}
+.video-caption{
+position:absolute;bottom:1.5rem;left:1.5rem;
+font-family:‘DM Mono’,monospace;font-size:0.6rem;
+letter-spacing:0.15em;text-transform:uppercase;
+color:var(–muted);
+}
+.video-label{
+position:absolute;top:1.5rem;right:1.5rem;
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.12em;text-transform:uppercase;
+color:var(–red);border:1px solid var(–border-red);
+padding:0.3rem 0.7rem;
+}
+.video-note{
+text-align:center;margin-top:1.5rem;
+font-family:‘DM Mono’,monospace;font-size:0.65rem;
+letter-spacing:0.12em;color:var(–muted);
 }
 
-.nav-cta {
-background: var(–blue);
-color: #fff; text-decoration: none;
-border-radius: 6px; padding: 10px 24px;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 700; font-size: 14px; letter-spacing: 0.5px;
-transition: background 0.2s, transform 0.15s;
+/* ── LEADERBOARD ── */
+#board{background:var(–black)}
+.board-wrap{margin-top:3rem}
+.board-header{
+display:grid;grid-template-columns:50px 1fr 100px 120px 100px;
+gap:1rem;padding:0.6rem 1.5rem;
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.18em;text-transform:uppercase;color:var(–muted);
+border-bottom:1px solid var(–border);
 }
-.nav-cta:hover { background: var(–blue-bright); transform: translateY(-1px); }
-
-/* HERO */
-.hero {
-min-height: 100vh;
-background: var(–black);
-display: flex; align-items: center;
-padding: 120px 48px 80px;
-position: relative; overflow: hidden;
+.board-row{
+display:grid;grid-template-columns:50px 1fr 100px 120px 100px;
+gap:1rem;padding:1.1rem 1.5rem;
+border-bottom:1px solid var(–border);
+align-items:center;
+transition:background 0.2s;
+position:relative;overflow:hidden;
 }
-
-.hero::before {
-content: ‘’;
-position: absolute; inset: 0;
-background-image:
-linear-gradient(rgba(26,111,212,0.04) 1px, transparent 1px),
-linear-gradient(90deg, rgba(26,111,212,0.04) 1px, transparent 1px);
-background-size: 48px 48px;
+.board-row:hover{background:rgba(255,255,255,0.02)}
+.board-row.gold{background:rgba(224,30,46,0.05)}
+.board-row.gold::before{
+content:’’;position:absolute;left:0;top:0;bottom:0;width:3px;
+background:var(–red);
 }
-
-.hero::after {
-content: ‘’;
-position: absolute; top: -100px; right: -100px;
-width: 700px; height: 700px;
-background: radial-gradient(circle, rgba(26,111,212,0.1) 0%, transparent 65%);
-pointer-events: none;
+.rank{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:800;font-size:1.4rem;color:var(–muted);
 }
-
-.hero-inner {
-position: relative;
-max-width: 1200px; margin: 0 auto; width: 100%;
-display: grid;
-grid-template-columns: 1fr 420px;
-gap: 80px; align-items: center;
+.board-row.gold .rank{color:var(–red)}
+.rep-name{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:600;font-size:1.1rem;letter-spacing:0.03em;
 }
-
-.hero-left { animation: up 0.8s cubic-bezier(0.16,1,0.3,1) both; }
-
-@keyframes up {
-from { opacity:0; transform:translateY(32px); }
-to   { opacity:1; transform:translateY(0); }
+.rep-loc{
+display:block;font-size:0.75rem;color:var(–muted);
+font-family:‘DM Mono’,monospace;letter-spacing:0.1em;margin-top:0.1rem;
 }
-
-.hero-badge {
-display: inline-flex; align-items: center; gap: 8px;
-border: 1px solid var(–blue-border);
-background: rgba(26,111,212,0.08);
-border-radius: 4px; padding: 7px 16px;
-font-family: ‘Montserrat’, sans-serif;
-font-size: 11px; font-weight: 700;
-letter-spacing: 2.5px; text-transform: uppercase;
-color: var(–blue-light); margin-bottom: 28px;
-animation: up 0.8s 0.05s cubic-bezier(0.16,1,0.3,1) both;
+.accounts{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:700;font-size:1.2rem;text-align:center;
+}
+.earnings{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:800;font-size:1.3rem;color:var(–red);text-align:right;
+}
+.board-row.gold .earnings{color:#ff3344}
+.badge{
+font-family:‘DM Mono’,monospace;font-size:0.55rem;
+letter-spacing:0.1em;text-transform:uppercase;
+padding:0.25rem 0.6rem;text-align:center;
+}
+.badge-fire{background:rgba(224,30,46,0.12);color:var(–red);border:1px solid var(–border-red)}
+.badge-hot{background:rgba(255,255,255,0.05);color:var(–mid);border:1px solid var(–border)}
+.board-week{
+margin-top:1rem;
+font-family:‘DM Mono’,monospace;font-size:0.6rem;
+letter-spacing:0.12em;text-transform:uppercase;color:var(–muted);
+text-align:right;
 }
 
-.hero-badge .dot {
-width: 6px; height: 6px;
-background: var(–blue-light); border-radius: 50%;
-animation: blink 1.8s ease-in-out infinite;
+/* ── PAY ── */
+#pay{background:var(–off-black)}
+.pay-intro{max-width:560px;color:var(–mid);font-size:1rem;line-height:1.7;margin-bottom:3.5rem}
+.pay-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+background:var(–border);border:1px solid var(–border);
+}
+.pay-card{
+background:var(–black);padding:2.5rem 2rem;
+transition:background 0.2s;
+}
+.pay-card:hover{background:#0e0e0e}
+.pay-tier{
+font-family:‘DM Mono’,monospace;font-size:0.6rem;
+letter-spacing:0.2em;text-transform:uppercase;color:var(–muted);margin-bottom:1rem;
+}
+.pay-range{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-size:2.6rem;line-height:1;color:var(–white);margin-bottom:0.3rem;
+}
+.pay-range span{color:var(–red)}
+.pay-sub{font-size:0.82rem;color:var(–muted);margin-bottom:1.5rem}
+.pay-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.pay-list li{
+font-size:0.88rem;color:var(–mid);
+display:flex;gap:0.7rem;align-items:flex-start;line-height:1.5;
+}
+.pay-list li::before{content:‘→’;color:var(–red);flex-shrink:0}
+.pay-highlight{border-top:2px solid var(–red) !important}
+.pay-pop-tag{
+display:inline-block;margin-bottom:0.8rem;
+font-family:‘DM Mono’,monospace;font-size:0.55rem;
+letter-spacing:0.15em;text-transform:uppercase;
+background:var(–red);color:var(–white);padding:0.3rem 0.8rem;
 }
 
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+/* ── TESTIMONIALS ── */
+#reps{background:var(–black)}
+.testi-grid{
+margin-top:3rem;
+display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.testi-card{
+background:var(–card);border:1px solid var(–border);
+padding:2rem;position:relative;overflow:hidden;
+transition:border-color 0.25s,transform 0.25s;
+}
+.testi-card:hover{border-color:var(–border-red);transform:translateY(-3px)}
+.testi-card::before{
+content:’”’;
+position:absolute;right:1.2rem;top:0.5rem;
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:7rem;font-weight:900;
+color:rgba(224,30,46,0.08);line-height:1;
+pointer-events:none;
+}
+.testi-text{
+font-size:0.92rem;line-height:1.7;color:var(–mid);
+margin-bottom:1.5rem;position:relative;z-index:1;
+}
+.testi-name{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:700;font-size:1rem;letter-spacing:0.05em;color:var(–white);
+}
+.testi-meta{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.12em;text-transform:uppercase;color:var(–red);margin-top:0.2rem;
+}
+.testi-stars{display:flex;gap:3px;margin-bottom:1rem}
+.star{color:var(–red);font-size:12px}
 
-.hero-title {
-font-family: ‘Montserrat’, sans-serif;
-font-size: clamp(42px, 6vw, 76px);
-font-weight: 900; line-height: 1.0;
-letter-spacing: -1.5px; margin-bottom: 24px;
-animation: up 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+/* ── WHY VLR ── */
+#why{background:var(–off-black)}
+.why-grid{
+margin-top:3rem;
+display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+background:var(–border);border:1px solid var(–border);
+}
+.why-card{
+background:var(–black);padding:2rem 1.5rem;
+transition:background 0.2s;
+}
+.why-card:hover{background:#0c0c0c}
+.why-icon{font-size:1.8rem;margin-bottom:1rem}
+.why-title{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:700;font-size:1.2rem;letter-spacing:0.04em;
+margin-bottom:0.6rem;
+}
+.why-desc{font-size:0.85rem;color:var(–muted);line-height:1.6}
+
+/* ── CTA ── */
+#apply{
+background:var(–red);color:var(–white);
+text-align:center;padding:6rem 2.5rem;border-bottom:none;
+}
+#apply .s-tag{color:rgba(255,255,255,0.6);justify-content:center}
+#apply .s-tag::before{background:rgba(255,255,255,0.4)}
+#apply .s-head{color:var(–white)}
+#apply .s-head em{color:var(–black)}
+#apply p{color:rgba(255,255,255,0.75);max-width:480px;margin:1rem auto 2.5rem;font-size:1rem;line-height:1.65}
+.btn-black{
+background:var(–black);color:var(–white);
+font-family:‘DM Mono’,monospace;font-size:0.7rem;
+letter-spacing:0.18em;text-transform:uppercase;
+padding:1rem 2.5rem;text-decoration:none;
+transition:background 0.2s;display:inline-block;
+}
+.btn-black:hover{background:#1a1a1a}
+.apply-or{
+display:block;margin-top:1.2rem;
+font-family:‘DM Mono’,monospace;font-size:0.62rem;
+letter-spacing:0.12em;color:rgba(255,255,255,0.5);
 }
 
-.hero-title .blue { color: var(–blue-bright); }
-.hero-title .thin { font-weight: 300; display: block; }
-
-.hero-sub {
-font-size: 17px; font-weight: 300;
-color: var(–muted); line-height: 1.8;
-max-width: 500px; margin-bottom: 40px;
-animation: up 0.8s 0.15s cubic-bezier(0.16,1,0.3,1) both;
+/* ── FOOTER ── */
+footer{
+background:var(–black);
+padding:2rem 2.5rem;
+display:flex;align-items:center;justify-content:space-between;
+flex-wrap:wrap;gap:1rem;border-top:1px solid var(–border);
 }
-
-.hero-sub strong { color: var(–off); font-weight: 600; }
-
-.hero-btns {
-display: flex; gap: 14px; flex-wrap: wrap;
-animation: up 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+.footer-logo{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:900;font-size:1.4rem;letter-spacing:0.1em;color:var(–white);
 }
-
-.btn-blue {
-background: var(–blue); color: #fff;
-text-decoration: none; border: none;
-border-radius: 6px; padding: 16px 36px;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
-cursor: pointer;
-transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-box-shadow: 0 8px 28px rgba(26,111,212,0.4);
-display: inline-flex; align-items: center; gap: 8px;
+.footer-logo span{color:var(–red)}
+.footer-copy{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);
 }
-
-.btn-blue:hover {
-background: var(–blue-bright); transform: translateY(-2px);
-box-shadow: 0 12px 36px rgba(26,111,212,0.5);
+.footer-alder{
+font-family:‘DM Mono’,monospace;font-size:0.58rem;
+letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);
 }
+.footer-alder span{color:var(–red)}
 
-.btn-outline {
-background: transparent; color: var(–off);
-text-decoration: none;
-border: 1px solid rgba(255,255,255,0.15);
-border-radius: 6px; padding: 16px 32px;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 600; font-size: 15px;
-cursor: pointer;
-transition: border-color 0.2s, background 0.2s;
-display: inline-flex; align-items: center; gap: 8px;
+/* ── TICKER ── */
+.ticker-wrap{
+background:var(–red);overflow:hidden;
+padding:0.6rem 0;border-top:none;border-bottom:1px solid var(–border);
 }
-
-.btn-outline:hover {
-border-color: var(–blue-border);
-background: rgba(26,111,212,0.06);
+.ticker{
+display:flex;gap:3rem;
+animation:tick 22s linear infinite;white-space:nowrap;
 }
-
-/* hero card */
-.hero-card {
-background: var(–black3);
-border: 1px solid var(–border);
-border-radius: 12px; overflow: hidden;
-animation: up 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+.ticker-item{
+font-family:‘Barlow Condensed’,sans-serif;
+font-weight:600;font-size:0.9rem;
+letter-spacing:0.15em;text-transform:uppercase;
+color:var(–white);flex-shrink:0;display:flex;gap:3rem;align-items:center;
 }
-
-.hero-card-header {
-background: var(–blue);
-padding: 20px 24px;
-display: flex; align-items: center; gap: 12px;
-}
-
-.hero-card-icon { font-size: 24px; }
-
-.hero-card-title {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 800; font-size: 16px; letter-spacing: 0.5px;
-}
-
-.hero-card-sub { font-size: 12px; opacity: 0.8; }
-
-.hero-card-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
-
-.hero-stat-row {
-display: flex; justify-content: space-between; align-items: center;
-padding: 14px 16px;
-background: var(–black4);
-border-radius: 8px; border: 1px solid var(–border);
-}
-
-.hero-stat-label { font-size: 13px; color: var(–muted); }
-
-.hero-stat-val {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 800; font-size: 18px; color: var(–blue-light);
-}
-
-.hero-card-footer { padding: 0 24px 24px; }
-
-.hero-card-cta {
-display: block; text-align: center;
-background: var(–black4);
-border: 1px solid var(–blue-border);
-border-radius: 8px; padding: 16px;
-text-decoration: none; color: var(–blue-light);
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 700; font-size: 13px; letter-spacing: 0.3px;
-transition: background 0.2s, border-color 0.2s;
-}
-
-.hero-card-cta:hover { background: rgba(26,111,212,0.1); border-color: var(–blue); }
-
-/* STATS BAR */
-.stats {
-background: var(–black2);
-border-top: 1px solid var(–border);
-border-bottom: 1px solid var(–border);
-padding: 0 48px;
-display: flex;
-}
-
-.stat-item {
-flex: 1; padding: 36px 24px; text-align: center;
-border-right: 1px solid var(–border);
-}
-
-.stat-item:last-child { border-right: none; }
-
-.stat-num {
-font-family: ‘Montserrat’, sans-serif;
-font-size: 40px; font-weight: 900;
-color: var(–blue-bright); line-height: 1; margin-bottom: 8px;
-}
-
-.stat-label {
-font-size: 12px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-color: var(–muted);
-}
-
-/* SECTIONS */
-.section {
-padding: 96px 48px;
-max-width: 1200px; margin: 0 auto;
-}
-
-.section-eyebrow {
-font-family: ‘Montserrat’, sans-serif;
-font-size: 11px; font-weight: 700;
-letter-spacing: 3px; text-transform: uppercase;
-color: var(–blue-light); margin-bottom: 12px;
-display: flex; align-items: center; gap: 10px;
-}
-
-.section-eyebrow::after {
-content: ‘’;
-display: block; flex: 1; max-width: 60px;
-height: 1px; background: var(–blue); opacity: 0.5;
-}
-
-.section-title {
-font-family: ‘Montserrat’, sans-serif;
-font-size: clamp(30px, 4vw, 48px);
-font-weight: 900; line-height: 1.1;
-letter-spacing: -0.5px; margin-bottom: 48px;
-}
-
-.section-title span { color: var(–blue-bright); }
-
-/* PERKS */
-.perks-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 2px;
-background: var(–border);
-border: 1px solid var(–border);
-border-radius: 12px; overflow: hidden;
-}
-
-.perk {
-background: var(–black2);
-padding: 36px 32px;
-transition: background 0.2s;
-position: relative;
-}
-
-.perk::after {
-content: ‘’;
-position: absolute; top:0; left:0;
-width: 3px; height: 100%;
-background: var(–blue); opacity: 0;
-transition: opacity 0.2s;
-}
-
-.perk:hover { background: var(–black3); }
-.perk:hover::after { opacity: 1; }
-
-.perk-icon { font-size: 28px; margin-bottom: 16px; display: block; }
-
-.perk-title {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 700; font-size: 16px;
-margin-bottom: 10px;
-}
-
-.perk-desc { font-size: 14px; color: var(–muted); line-height: 1.75; }
-
-/* STEPS */
-.steps-wrap {
-background: var(–black2);
-border-top: 1px solid var(–border);
-border-bottom: 1px solid var(–border);
-padding: 96px 48px;
-}
-
-.steps-inner { max-width: 1200px; margin: 0 auto; }
-
-.steps-grid {
-display: grid; grid-template-columns: repeat(3,1fr);
-gap: 48px; position: relative;
-}
-
-.steps-grid::before {
-content: ‘’;
-position: absolute;
-top: 28px; left: calc(16% + 28px); right: calc(16% + 28px);
-height: 1px;
-background: linear-gradient(90deg, var(–blue) 0%, transparent 50%, var(–blue) 100%);
-opacity: 0.3;
-}
-
-.step { text-align: center; }
-
-.step-circle {
-width: 56px; height: 56px; border-radius: 50%;
-background: var(–blue);
-display: flex; align-items: center; justify-content: center;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 900; font-size: 22px; color: #fff;
-margin: 0 auto 24px; position: relative; z-index: 1;
-box-shadow: 0 0 0 8px rgba(26,111,212,0.1), 0 8px 24px rgba(26,111,212,0.3);
-}
-
-.step-title {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 800; font-size: 18px; margin-bottom: 12px;
-}
-
-.step-desc { font-size: 14px; color: var(–muted); line-height: 1.75; }
-
-/* EARNINGS */
-.earnings-layout {
-display: grid; grid-template-columns: 1fr 1fr;
-gap: 80px; align-items: center;
-}
-
-.tiers { display: flex; flex-direction: column; gap: 12px; }
-
-.tier {
-background: var(–black2);
-border: 1px solid var(–border);
-border-radius: 8px; padding: 20px 24px;
-display: flex; justify-content: space-between; align-items: center;
-transition: border-color 0.2s; position: relative; overflow: hidden;
-}
-
-.tier::before {
-content: ‘’;
-position: absolute; top:0; left:0;
-width: 3px; height: 100%;
-background: var(–blue); opacity: 0;
-transition: opacity 0.2s;
-}
-
-.tier:hover { border-color: var(–blue-border); }
-.tier:hover::before { opacity: 1; }
-
-.tier.top {
-background: rgba(26,111,212,0.07);
-border-color: var(–blue-border);
-}
-
-.tier.top::before { opacity: 1; }
-
-.tier-left strong {
-display: block; font-family: ‘Montserrat’, sans-serif;
-font-weight: 700; font-size: 15px; margin-bottom: 4px;
-}
-
-.tier-left span { font-size: 13px; color: var(–muted); }
-
-.tier-amt {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 900; font-size: 22px; color: var(–blue-light);
-}
-
-.tier.top .tier-amt { color: var(–blue-bright); font-size: 26px; }
-
-/* FINAL CTA */
-.final {
-background: var(–black);
-border-top: 1px solid var(–border);
-padding: 100px 48px; text-align: center;
-position: relative; overflow: hidden;
-}
-
-.final::before {
-content: ‘’;
-position: absolute;
-bottom: -200px; left: 50%; transform: translateX(-50%);
-width: 800px; height: 400px;
-background: radial-gradient(ellipse, rgba(26,111,212,0.08) 0%, transparent 70%);
-pointer-events: none;
-}
-
-.final-title {
-font-family: ‘Montserrat’, sans-serif;
-font-size: clamp(36px, 5vw, 64px);
-font-weight: 900; letter-spacing: -1px; line-height: 1.1;
-margin-bottom: 16px; position: relative;
-}
-
-.final-title span { color: var(–blue-bright); }
-
-.final-sub {
-font-size: 17px; color: var(–muted);
-margin-bottom: 56px; position: relative;
-}
-
-.contact-card {
-display: inline-flex;
-align-items: center; gap: 40px;
-background: var(–black3);
-border: 1px solid rgba(26,111,212,0.3);
-border-radius: 12px; padding: 40px 56px;
-flex-wrap: wrap; justify-content: center;
-position: relative;
-box-shadow: 0 0 60px rgba(26,111,212,0.08);
-}
-
-.contact-block { text-align: center; }
-
-.contact-label {
-font-size: 11px; font-weight: 700;
-letter-spacing: 2px; text-transform: uppercase;
-color: var(–muted); margin-bottom: 8px;
-}
-
-.contact-name {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 800; font-size: 22px; color: var(–off);
-}
-
-.contact-phone {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 900; font-size: 30px; color: var(–white);
-text-decoration: none; transition: color 0.2s;
-}
-
-.contact-phone:hover { color: var(–blue-light); }
-
-.contact-divider {
-width: 1px; height: 64px;
-background: rgba(255,255,255,0.08);
-}
-
-.call-now {
-background: var(–blue); color: #fff;
-text-decoration: none; border-radius: 8px;
-padding: 20px 48px;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 800; font-size: 16px;
-letter-spacing: 0.5px; text-transform: uppercase;
-display: inline-flex; align-items: center; gap: 10px;
-transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-box-shadow: 0 8px 32px rgba(26,111,212,0.4);
-}
-
-.call-now:hover {
-background: var(–blue-bright); transform: translateY(-2px);
-box-shadow: 0 16px 48px rgba(26,111,212,0.5);
-}
-
-/* FOOTER */
-footer {
-background: var(–black2);
-border-top: 1px solid var(–border);
-padding: 24px 48px;
-display: flex; align-items: center; justify-content: space-between;
-flex-wrap: wrap; gap: 12px;
-}
-
-.footer-logo { display: flex; align-items: center; gap: 10px; }
-
-.footer-logo-mark {
-width: 28px; height: 28px; background: var(–blue);
-border-radius: 4px;
-display: flex; align-items: center; justify-content: center;
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 900; font-size: 14px; color: #fff;
-}
-
-.footer-logo-text {
-font-family: ‘Montserrat’, sans-serif;
-font-weight: 700; font-size: 15px; color: var(–muted);
-}
-
-.footer-right { font-size: 12px; color: var(–muted); opacity: 0.5; }
-
-/* RESPONSIVE */
-@media (max-width: 960px) {
-nav { padding: 0 20px; }
-.hero { padding: 100px 24px 60px; }
-.hero-inner { grid-template-columns: 1fr; gap: 48px; }
-.hero-card { max-width: 100%; }
-.stats { flex-wrap: wrap; padding: 0 24px; }
-.stat-item { min-width: 45%; border-right: none; border-bottom: 1px solid var(–border); }
-.section { padding: 64px 24px; }
-.perks-grid { grid-template-columns: 1fr; }
-.steps-wrap { padding: 64px 24px; }
-.steps-grid { grid-template-columns: 1fr; }
-.steps-grid::before { display: none; }
-.earnings-layout { grid-template-columns: 1fr; gap: 40px; }
-.final { padding: 72px 24px; }
-.contact-card { padding: 32px 24px; gap: 24px; }
-.contact-divider { display: none; }
-footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+.ticker-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.5);flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ANIM ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+nav{padding:1rem 1.2rem}
+.nav-links,.nav-badge{display:none}
+section{padding:4rem 1.2rem}
+.hero{padding:7rem 1.2rem 4rem}
+.hero-stats{display:none}
+.pay-grid,.testi-grid,.why-grid{grid-template-columns:1fr}
+.board-header,.board-row{grid-template-columns:40px 1fr 80px}
+.board-row .badge,.board-header span:last-child{display:none}
+footer{flex-direction:column;align-items:flex-start}
 }
 </style>
 
@@ -574,214 +471,308 @@ footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
 <!-- NAV -->
 
 <nav>
-  <div class="nav-logo">
-    <div class="nav-logo-mark">A</div>
-    <div class="nav-logo-text">Alder <span>Careers</span></div>
-  </div>
-  <a href="tel:8014728010" class="nav-cta">📞 (801) 472-8010</a>
+  <a class="nav-logo" href="#">VLR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#video">The Team</a></li>
+    <li><a href="#board">Standings</a></li>
+    <li><a href="#pay">Pay</a></li>
+    <li><a href="#reps">Reps Speak</a></li>
+    <li><a href="#apply">Join</a></li>
+  </ul>
+  <div class="nav-badge">Alder Home Security</div>
 </nav>
+
+<!-- TICKER -->
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item">
+      VLR — VALOR <span class="ticker-dot"></span>
+      Alder Home Security <span class="ticker-dot"></span>
+      Top-Performing Sales Team <span class="ticker-dot"></span>
+      Uncapped Commission <span class="ticker-dot"></span>
+      Real People. Real Pay. <span class="ticker-dot"></span>
+      VLR — VALOR <span class="ticker-dot"></span>
+      Alder Home Security <span class="ticker-dot"></span>
+      Top-Performing Sales Team <span class="ticker-dot"></span>
+      Uncapped Commission <span class="ticker-dot"></span>
+      Real People. Real Pay. <span class="ticker-dot"></span>
+    </div>
+    <div class="ticker-item" aria-hidden="true">
+      VLR — VALOR <span class="ticker-dot"></span>
+      Alder Home Security <span class="ticker-dot"></span>
+      Top-Performing Sales Team <span class="ticker-dot"></span>
+      Uncapped Commission <span class="ticker-dot"></span>
+      Real People. Real Pay. <span class="ticker-dot"></span>
+      VLR — VALOR <span class="ticker-dot"></span>
+      Alder Home Security <span class="ticker-dot"></span>
+      Top-Performing Sales Team <span class="ticker-dot"></span>
+      Uncapped Commission <span class="ticker-dot"></span>
+      Real People. Real Pay. <span class="ticker-dot"></span>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-badge"><div class="dot"></div> Now Hiring · Utah</div>
-      <h1 class="hero-title">
-        Start a Career<br>
-        <span class="blue">That Pays</span><br>
-        <span class="thin">What You're Worth.</span>
-      </h1>
-      <p class="hero-sub">
-        Alder is looking for driven, hungry individuals to join our <strong>residential sales team</strong> across Utah. No experience needed — if you're coachable and competitive, we'll build you into a top earner.
-      </p>
-      <div class="hero-btns">
-        <a href="tel:8014728010" class="btn-blue">📞 Call to Apply</a>
-        <a href="#opportunity" class="btn-outline">Learn More ↓</a>
-      </div>
+  <div class="hero-scanlines"></div>
+  <div class="hero-red-bar"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">Alder Home Security · Elite Sales Division</div>
+  <h1>
+    <div class="hero-vlr">V<span>L</span>R</div>
+    <div class="hero-full">VALOR</div>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">
+    We're not a team. We're a <strong>standard.</strong><br>
+    Built for reps who don't want a ceiling — just a door to walk through and a city to own. If you're serious about sales, you belong here.
+  </p>
+  <div class="hero-ctas">
+    <a href="#apply" class="btn-red">Join VLR</a>
+    <a href="#board" class="btn-ghost">See Standings</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">$12K</div>
+      <div class="stat-label">Top Rep / Month</div>
     </div>
-    <div class="hero-card">
-      <div class="hero-card-header">
-        <span class="hero-card-icon">🏠</span>
-        <div>
-          <div class="hero-card-title">Alder Residential Sales</div>
-          <div class="hero-card-sub">Direct Sales · Full Time · Utah</div>
-        </div>
-      </div>
-      <div class="hero-card-body">
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">Average First Year</span>
-          <span class="hero-stat-val">$70K–$90K</span>
-        </div>
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">Commission Type</span>
-          <span class="hero-stat-val">Uncapped</span>
-        </div>
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">Start Date</span>
-          <span class="hero-stat-val">Immediate</span>
-        </div>
-        <div class="hero-stat-row">
-          <span class="hero-stat-label">Experience Required</span>
-          <span class="hero-stat-val">None</span>
-        </div>
-      </div>
-      <div class="hero-card-footer" style="padding-top:16px">
-        <a href="tel:8014728010" class="hero-card-cta">📲 Call Kenneth Tupea — (801) 472-8010</a>
-      </div>
+    <div>
+      <div class="stat-num">94%</div>
+      <div class="stat-label">Retention Rate</div>
+    </div>
+    <div>
+      <div class="stat-num">#1</div>
+      <div class="stat-label">Regional Team</div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
+<!-- VIDEO -->
 
-<div class="stats">
-  <div class="stat-item">
-    <div class="stat-num">$80K+</div>
-    <div class="stat-label">Avg First Year Income</div>
+<section id="video">
+  <div class="s-tag">The Team</div>
+  <h2 class="s-head">SEE WHAT WE'RE<br><em>ACTUALLY</em> ABOUT</h2>
+  <div class="video-wrap" onclick="this.innerHTML='<iframe width=\'100%\' height=\'100%\' src=\'YOUR_VIDEO_URL\' frameborder=\'0\' allow=\'autoplay; fullscreen\' style=\'position:absolute;inset:0\' allowfullscreen></iframe>';this.style.background='#000'">
+    <div class="video-bg-text">VLR</div>
+    <div class="play-ring">
+      <div class="play-tri"></div>
+    </div>
+    <div class="video-label">▶ TEAM FILM</div>
+    <div class="video-caption">VALOR · Alder Home Security · 2024 Season</div>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">Week 1</div>
-    <div class="stat-label">Start Closing Deals</div>
+  <p class="video-note">Drop your video link in — replace YOUR_VIDEO_URL above with your YouTube or Vimeo embed link</p>
+</section>
+
+<!-- LEADERBOARD -->
+
+<section id="board">
+  <div class="s-tag">Current Standings</div>
+  <h2 class="s-head">THE<br><em>BOARD</em></h2>
+  <div class="board-wrap">
+    <div class="board-header">
+      <span>#</span>
+      <span>Rep</span>
+      <span style="text-align:center">Accts</span>
+      <span style="text-align:right">Est. Month</span>
+      <span style="text-align:center">Status</span>
+    </div>
+
+```
+<div class="board-row gold">
+  <div class="rank">1</div>
+  <div>
+    <div class="rep-name">Jordan M.</div>
+    <span class="rep-loc">Salt Lake · Week 3</span>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Uncapped Commission</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">Top 5%</div>
-    <div class="stat-label">Industry Earning Potential</div>
-  </div>
+  <div class="accounts">47</div>
+  <div class="earnings">$11,280</div>
+  <div class="badge badge-fire">🔥 On Fire</div>
 </div>
 
-<!-- WHY JOIN -->
-
-<div id="opportunity">
-  <div class="section">
-    <div class="section-eyebrow">Why Alder</div>
-    <div class="section-title">Built for people who<br><span>want more</span></div>
-    <div class="perks-grid">
-      <div class="perk">
-        <span class="perk-icon">💰</span>
-        <div class="perk-title">Uncapped Earning</div>
-        <div class="perk-desc">Your paycheck is entirely in your control. Top performers consistently earn $10,000–$20,000 per month. There's no cap and no ceiling.</div>
-      </div>
-      <div class="perk">
-        <span class="perk-icon">🏠</span>
-        <div class="perk-title">Residential Sales</div>
-        <div class="perk-desc">You'll work directly with homeowners — building relationships, solving real problems, and closing deals that protect families in their homes.</div>
-      </div>
-      <div class="perk">
-        <span class="perk-icon">🚀</span>
-        <div class="perk-title">Fast Onboarding</div>
-        <div class="perk-desc">We get you trained and in the field fast. No endless classroom time. You'll be closing real accounts within your first week.</div>
-      </div>
-      <div class="perk">
-        <span class="perk-icon">📈</span>
-        <div class="perk-title">Leadership Path</div>
-        <div class="perk-desc">Consistent performers move into management. Build your own team, earn overrides, and grow beyond just your own accounts.</div>
-      </div>
-      <div class="perk">
-        <span class="perk-icon">🤝</span>
-        <div class="perk-title">Team Culture</div>
-        <div class="perk-desc">Sales is a grind — you won't do it alone. We compete together, push each other, and celebrate wins as a team.</div>
-      </div>
-      <div class="perk">
-        <span class="perk-icon">🗺️</span>
-        <div class="perk-title">Travel Markets</div>
-        <div class="perk-desc">Opportunity to work campaigns across the country. See new markets, stack more income, and sharpen your skills in different environments.</div>
-      </div>
-    </div>
+<div class="board-row">
+  <div class="rank">2</div>
+  <div>
+    <div class="rep-name">Cass T.</div>
+    <span class="rep-loc">Provo · Week 3</span>
   </div>
+  <div class="accounts">38</div>
+  <div class="earnings">$9,120</div>
+  <div class="badge badge-fire">🔥 On Fire</div>
 </div>
 
-<!-- HOW IT WORKS -->
-
-<div class="steps-wrap">
-  <div class="steps-inner">
-    <div class="section-eyebrow" style="justify-content:center">Process</div>
-    <div class="section-title" style="text-align:center;margin-bottom:56px">3 steps to <span>your first check</span></div>
-    <div class="steps-grid">
-      <div class="step">
-        <div class="step-circle">1</div>
-        <div class="step-title">Reach Out to Kenneth</div>
-        <div class="step-desc">One call with Kenneth Tupea to talk through the role, expectations, and pay. No pressure — just honest conversation about the opportunity.</div>
-      </div>
-      <div class="step">
-        <div class="step-circle">2</div>
-        <div class="step-title">Get Trained</div>
-        <div class="step-desc">Focused, efficient training to get you closing quickly. We don't waste your time — you'll be ready to hit doors and start earning fast.</div>
-      </div>
-      <div class="step">
-        <div class="step-circle">3</div>
-        <div class="step-title">Start Earning</div>
-        <div class="step-desc">Get in the field, close accounts, and watch your commissions build. Your work ethic is your paycheck — it's that simple.</div>
-      </div>
-    </div>
+<div class="board-row">
+  <div class="rank">3</div>
+  <div>
+    <div class="rep-name">Marcus R.</div>
+    <span class="rep-loc">Ogden · Week 3</span>
   </div>
+  <div class="accounts">34</div>
+  <div class="earnings">$8,160</div>
+  <div class="badge badge-hot">↑ Rising</div>
 </div>
 
-<!-- EARNINGS -->
-
-<div class="section">
-  <div class="earnings-layout">
-    <div>
-      <div class="section-eyebrow">Compensation</div>
-      <div class="section-title">Real numbers.<br><span>Real income.</span></div>
-      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px">
-        Commission is tied directly to accounts closed. The more effort you put in, the more you take home. Here's what reps typically earn at different output levels.
-      </p>
-      <a href="tel:8014728010" class="btn-blue">📞 Ask About Pay Details</a>
-    </div>
-    <div class="tiers">
-      <div class="tier">
-        <div class="tier-left"><strong>Getting Started</strong><span>3–5 accounts / week</span></div>
-        <div class="tier-amt">$2K–4K/mo</div>
-      </div>
-      <div class="tier">
-        <div class="tier-left"><strong>Full-Time Grind</strong><span>7–10 accounts / week</span></div>
-        <div class="tier-amt">$5K–8K/mo</div>
-      </div>
-      <div class="tier top">
-        <div class="tier-left"><strong>Top Rep</strong><span>12+ accounts / week</span></div>
-        <div class="tier-amt">$10K–20K/mo</div>
-      </div>
-      <div class="tier">
-        <div class="tier-left"><strong>Manager / Override</strong><span>Lead your own team</span></div>
-        <div class="tier-amt">$20K+/mo</div>
-      </div>
-    </div>
+<div class="board-row">
+  <div class="rank">4</div>
+  <div>
+    <div class="rep-name">Destiny W.</div>
+    <span class="rep-loc">SLC · Week 3</span>
   </div>
+  <div class="accounts">29</div>
+  <div class="earnings">$6,960</div>
+  <div class="badge badge-hot">↑ Rising</div>
 </div>
 
-<!-- FINAL CTA -->
-
-<div class="final">
-  <h2 class="final-title">Ready to <span>make a move?</span></h2>
-  <p class="final-sub">One call changes everything. Talk to Kenneth today.</p>
-  <div class="contact-card">
-    <div class="contact-block">
-      <div class="contact-label">Your Contact</div>
-      <div class="contact-name">Kenneth Tupea</div>
-    </div>
-    <div class="contact-divider"></div>
-    <div class="contact-block">
-      <div class="contact-label">Phone</div>
-      <a href="tel:8014728010" class="contact-phone">(801) 472-8010</a>
-    </div>
-    <div class="contact-divider"></div>
-    <a href="tel:8014728010" class="call-now">📲 Call Now</a>
+<div class="board-row">
+  <div class="rank">5</div>
+  <div>
+    <div class="rep-name">Nate B.</div>
+    <span class="rep-loc">West Valley · Week 3</span>
   </div>
+  <div class="accounts">22</div>
+  <div class="earnings">$5,280</div>
+  <div class="badge badge-hot">Steady</div>
 </div>
+
+<div class="board-row">
+  <div class="rank">6</div>
+  <div>
+    <div class="rep-name">Leila O.</div>
+    <span class="rep-loc">Draper · Week 3</span>
+  </div>
+  <div class="accounts">18</div>
+  <div class="earnings">$4,320</div>
+  <div class="badge badge-hot">Steady</div>
+</div>
+```
+
+  </div>
+  <div class="board-week">Updated weekly · Season totals tracked · This could be you ↑</div>
+</section>
+
+<!-- PAY -->
+
+<section id="pay">
+  <div class="s-tag">The Pay</div>
+  <h2 class="s-head">NO CEILING.<br><em>JUST RESULTS.</em></h2>
+  <p class="pay-intro">Every account you close puts real money in your pocket. No salary cap, no hidden deductions, no politics. You close, you eat. Here's what it looks like in real numbers.</p>
+  <div class="pay-grid">
+    <div class="pay-card">
+      <div class="pay-tier">Getting Started</div>
+      <div class="pay-range">$2K–<span>5K</span></div>
+      <div class="pay-sub">per month · 10–20 accounts</div>
+      <ul class="pay-list">
+        <li>~$240 per installed account</li>
+        <li>Full training provided</li>
+        <li>Team support on every door</li>
+        <li>Weekly payout schedule</li>
+      </ul>
+    </div>
+    <div class="pay-card pay-highlight">
+      <div class="pay-pop-tag">Most Reps Hit This</div>
+      <div class="pay-tier">Finding Your Stride</div>
+      <div class="pay-range">$5K–<span>8K</span></div>
+      <div class="pay-sub">per month · 20–35 accounts</div>
+      <ul class="pay-list">
+        <li>Bonuses kick in at 25 accounts</li>
+        <li>Promoted to area leads eligible</li>
+        <li>Priority territory access</li>
+        <li>VLR performance incentives</li>
+      </ul>
+    </div>
+    <div class="pay-card">
+      <div class="pay-tier">Top Performers</div>
+      <div class="pay-range">$8K–<span>12K+</span></div>
+      <div class="pay-sub">per month · 35+ accounts</div>
+      <ul class="pay-list">
+        <li>Uncapped — no max ceiling</li>
+        <li>Trip & prize competition eligible</li>
+        <li>Leadership track opens</li>
+        <li>Your name on the board</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+
+<section id="reps">
+  <div class="s-tag">Reps Speak</div>
+  <h2 class="s-head">DON'T TAKE<br><em>OUR WORD.</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testi-text">"I came in skeptical — I'd been burned by other D2D teams before. VLR was different from day one. Real training, real support, and I pulled $7,400 in my second month. The board isn't for show, it's motivation."</p>
+      <div class="testi-name">Marcus R.</div>
+      <div class="testi-meta">Rep · 8 Months with VLR</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testi-text">"I was fresh out of college with zero sales experience. They didn't care — they trained me right. Three months in I made more than my friends with 'real jobs.' The team culture actually makes you want to go knock."</p>
+      <div class="testi-name">Destiny W.</div>
+      <div class="testi-meta">Rep · 5 Months with VLR</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testi-text">"Biggest thing for me was the honesty. They told me exactly what I'd make, exactly how hard it would be, and exactly what the top reps do differently. No games. I hit $11K last month and I'm not stopping."</p>
+      <div class="testi-name">Jordan M.</div>
+      <div class="testi-meta">Lead Rep · 14 Months with VLR</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VLR -->
+
+<section id="why">
+  <div class="s-tag">Why VLR</div>
+  <h2 class="s-head">WHAT SETS US<br><em>APART.</em></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Real Training</div>
+      <p class="why-desc">No throwing you at a door with a script. We ride with you, debrief with you, and build your skillset from the ground up.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <div class="why-title">Premium Territory</div>
+      <p class="why-desc">VLR gets first access to the best neighborhoods. Less cold — more opportunity.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Weekly Payout</div>
+      <p class="why-desc">You don't wait a month to see your money. Accounts close, funds move. Simple.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔥</div>
+      <div class="why-title">Team That Shows Up</div>
+      <p class="why-desc">VLR is a culture. We work hard, compete on the board, and genuinely celebrate each other's wins.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section id="apply">
+  <div class="s-tag">Join the Team</div>
+  <h2 class="s-head">YOUR MOVE.<br><em>MAKE IT.</em></h2>
+  <p>We're selective. We're not looking for bodies — we're looking for people who are serious about building something. If that's you, let's talk.</p>
+  <a href="mailto:joinVLR@alderteam.com" class="btn-black">Apply to VLR</a>
+  <span class="apply-or">Or text the manager directly — link below</span>
+</section>
 
 <!-- FOOTER -->
 
 <footer>
-  <div class="footer-logo">
-    <div class="footer-logo-mark">A</div>
-    <div class="footer-logo-text">Alder Sales · Kenneth Tupea</div>
-  </div>
-  <div class="footer-right">West Jordan, UT · (801) 472-8010 · Independent Sales Representative Opportunity</div>
+  <div class="footer-logo">VLR<span>.</span></div>
+  <div class="footer-copy">© 2025 VALOR Sales Team</div>
+  <div class="footer-alder">A Division of <span>Alder Home Security</span></div>
 </footer>
 
 </body>
